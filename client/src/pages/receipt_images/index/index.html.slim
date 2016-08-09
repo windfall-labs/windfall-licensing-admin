@@ -1,0 +1,16 @@
+.page-title
+  .title Receipts
+
+.inner-container
+  .panel
+    .panel-head
+      .panel-action
+    .panel-body
+      input.form-group.search-field.w20 ng-model="searchText" placeholder="Search" ng-enter=="getData(page, limit)"
+
+      button.btn.btn-primary ng-click="getData(page, limit)" Search
+
+
+      pagination.fright page="page" count="uiState.count" on-change="getData(page, limit)"
+
+      receipts-table collection="collection"

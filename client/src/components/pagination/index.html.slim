@@ -1,0 +1,18 @@
+.row
+  .col-md-12
+    ul.pagination-sm.pagination.pull-right
+
+      li
+        a ng-click="queryPage(1)" First
+
+      li ng-class="{disabled: page <= 1}"
+        a ng-click="queryPage('prev')" Previous
+
+      li ng-repeat="n in range(page)" ng-class="{active:  n == page,l15:true}" ng-if="showList(n)"
+        a ng-bind="n" ng-click="queryPage(n)"
+
+      li ng-class="{disabled: page >= count}"
+        a ng-click="queryPage('next')" Next
+
+      li
+        a ng-click="queryPage(count)" Last

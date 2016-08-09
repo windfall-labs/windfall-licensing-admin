@@ -1,0 +1,14 @@
+table.table.table-hover
+  thead
+    tr
+      th Receipt ID
+      th Banner Key
+      th Image
+      th Old Image Url
+
+  tbody
+    tr ng-repeat="obj in $ctrl.collection"
+      td ng-bind="obj.receipt_id"
+      td ng-bind="obj.banner_key"
+      td ng-bind="obj.image"
+      td ng-bind="obj.old_image_url"
