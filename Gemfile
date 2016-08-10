@@ -24,6 +24,7 @@ gem 'paperclip'
 #-------
 gem 'angular-rails-templates'
 gem 'kaminari'
+gem 'puma', '~> 3.4.0'
 
 group :production do
   gem 'thin'
@@ -41,6 +42,7 @@ group :development, :test do
   gem 'letter_opener'
   gem 'guard-rspec'
   gem 'rb-fsevent'
+  gem 'capistrano3-puma', '~> 1.2.1'
 end
 
 group :test do
