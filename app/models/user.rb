@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+
+	establish_connection "licensing_#{Rails.env}".to_sym
+  
   include Authenticable
   include TokenProcessor
 

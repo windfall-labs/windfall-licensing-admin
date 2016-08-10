@@ -34,6 +34,7 @@ config/database.yml
 config/settings.yml
 config/sms.yml
 config/paypal.yml
+config/secrets.yml
 config/skylight.yml
 config/redis.yml
 config/application.yml
