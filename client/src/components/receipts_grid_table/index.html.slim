@@ -1,0 +1,11 @@
+.col-md-12.row
+  .grid-type ng-repeat="obj in $ctrl.collection" ng-click="$ctrl.openImage($ctrl.getBannerUrl(obj))"
+    img src="{{$ctrl.getBannerUrl(obj)}}"
+    .grid-footer
+      titled-list
+        .image-title
+          span
+            | {{obj.banner_key.capitalize()}}
+        .sub
+          span
+            | {{obj.receipt_id}}

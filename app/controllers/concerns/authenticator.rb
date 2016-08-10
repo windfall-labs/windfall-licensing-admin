@@ -14,7 +14,8 @@ module Authenticator
   end
 
   def authenticate_request
-    fail ExpiredSessionError unless current_user.present?
+    render json: { error: 'Your session has expired' }, status: :unauthorized unless current_user.present?
   end
+
 
 end

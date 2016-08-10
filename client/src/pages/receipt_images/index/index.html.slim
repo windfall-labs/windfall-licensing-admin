@@ -3,14 +3,18 @@
 
 .inner-container
   .panel
-    .panel-head
-      .panel-action
     .panel-body
-      input.form-group.search-field.w20 ng-model="searchText" placeholder="Search" ng-enter=="getData(page, limit)"
+      .fleft
+        input.form-group.search-field.w20 ng-model="searchText" ng-change="clearData(page, limit)" placeholder="Search" ng-enter=="getData(page, limit)"
 
-      button.btn.btn-primary ng-click="getData(page, limit)" Search
+        button.btn.btn-primary ng-click="getData(page, limit)" Search
 
+      .fleft
+        toggle-list-type list-type="listType"
 
       pagination.fright page="page" count="uiState.count" on-change="getData(page, limit)"
 
-      receipts-table collection="collection"
+      receipts-table collection="collection" ng-if="listType != 'grid'"
+      receipts-grid-table collection="collection" ng-if="listType == 'grid'"
+
+      pagination.fright page="page" count="uiState.count" on-change="getData(page, limit)"

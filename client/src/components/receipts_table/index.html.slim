@@ -1,14 +1,20 @@
-table.table.table-hover
+
+table.table.table-hover ng-cloak=""
   thead
     tr
-      th Receipt ID
-      th Banner Key
-      th Image
-      th Old Image Url
-
+      th
+      th
   tbody
-    tr ng-repeat="obj in $ctrl.collection"
-      td ng-bind="obj.receipt_id"
-      td ng-bind="obj.banner_key"
-      td ng-bind="obj.image"
-      td ng-bind="obj.old_image_url"
+    tr ng-repeat="obj in $ctrl.collection" ng-click="$ctrl.openImage($ctrl.getBannerUrl(obj))"
+      td
+        .small-media
+          img src="{{$ctrl.getBannerUrl(obj)}}"
+      td.titled-list
+        h1.image-title
+          span
+            | {{obj.banner_key.capitalize()}}
+          br
+          span
+            | Receipt ID: {{obj.receipt_id}}
+        .sub
+          span ng-bind="$ctrl.getBannerUrl(obj)"

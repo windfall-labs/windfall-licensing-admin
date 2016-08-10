@@ -9,8 +9,8 @@ Ctrl = ->
 
   return
 
-angular.module('client').component 'receiptsTable',
-  templateUrl: 'components/receipts_table/index.html'
+angular.module('client').component 'receiptsGridTable',
+  templateUrl: 'components/receipts_grid_table/index.html'
   controller: Ctrl
   bindings:
     collection: "="

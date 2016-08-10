@@ -17,8 +17,13 @@ String::formatMoney = ->
 String::removeUnderscore = ->
   this.replace(/_/g, ' ')
 
+# String::capitalize = ->
+#   @replace /(?:^|\s)\S/g, (a) ->
+#     a.toUpperCase()
+
 String::capitalize = ->
-  @replace /(?:^|\s)\S/g, (a) ->
+  trimmed = @replace "_", ' '
+  trimmed.replace /(?:^|\s)\S/g, (a) ->
     a.toUpperCase()
 
 String::toPercent = ->

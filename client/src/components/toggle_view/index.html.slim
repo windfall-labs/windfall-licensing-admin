@@ -1,0 +1,11 @@
+toggle-view
+  ul.pagination-sm
+    li
+      a
+        | View Results:
+    li
+      a href="#" ng-click="changeListType('list')" ng-class="{'active': listType == 'list'}"
+        i.icon.icon-list
+    li
+      a href="#" ng-click="changeListType('grid')" ng-class="{'active': listType == 'grid'}"
+        i.icon.icon-grid
