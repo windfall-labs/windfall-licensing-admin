@@ -1,7 +1,7 @@
 require 'net/ssh/proxy/command'
 
 # config valid only for Capistrano 3.1
-lock '3.4.0'
+lock '3.5.0'
 
 set :application, 'windfall-licensing-admin'
 set :repo_url, 'git@github.com:windfall-labs/windfall-licensing-admin.git'
