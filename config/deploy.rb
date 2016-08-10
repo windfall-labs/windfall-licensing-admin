@@ -3,8 +3,8 @@ require 'net/ssh/proxy/command'
 # config valid only for Capistrano 3.1
 lock '3.4.0'
 
-set :application, '<insert_app_name>'
-set :repo_url, '<insert repo>'
+set :application, 'windfall-licensing-admin'
+set :repo_url, 'git@github.com:windfall-labs/windfall-licensing-admin.git'
 set :deploy_via, :remote_cache
 set :bundle_without, [:development, :test]
 
@@ -16,13 +16,12 @@ set :keep_releases, 1
 set :bundle_gemfile, -> { release_path.join('Gemfile') }
 set :bundle_flags, '--deployment'
 
-set :rvm_ruby_version, '2.3.0@<insert_app_name>'
-set :deploy_to, "/home/deploy/<insert_app_name>"
+set :rvm_ruby_version, '2.3.1@windfall-licesing-admin'
 
 
 load "config/deploy/tasks.rb"
 
-set :whenever_identifier, ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
+# set :whenever_identifier, ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
 
 namespace :deploy do
   after :publishing, :restart
