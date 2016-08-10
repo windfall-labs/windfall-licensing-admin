@@ -12,6 +12,8 @@ set :log_level, :debug
 set :linked_files, %w{config/database.yml config/secrets.yml}
 set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 
+set :assets_roles, [:app]
+
 set :keep_releases, 1
 set :bundle_gemfile, -> { release_path.join('Gemfile') }
 set :bundle_flags, '--deployment'
