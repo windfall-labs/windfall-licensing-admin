@@ -1,0 +1,89 @@
+.image-viewer
+  .preview-images
+    img
+      width: 90px
+      height: 130px
+      border: 3px white solid
+      margin: 5px
+
+    .img-active
+      border: 5px #1C83C6 solid
+
+
+    .prev-img-container
+      // float: left
+      width: 10%
+
+    ul
+      list-style-type: none
+
+
+  .titled-list
+    .image-title
+      margin: 0
+      padding: 0
+      font-size: 20px
+      font-weight: 500
+      line-height: 1.5
+      color: #444
+
+    .sub
+      color: #1C83C6
+      font-size: 16px
+      font-weight: 500
+      line-height: 1.5
+
+  .modal
+    background: rgba(0, 0, 0, 0.8)
+    z-index: 1000
+    display: block
+    overflow-x: hidden
+    overflow-y: auto
+    position: fixed
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+    -webkit-overflow-scrolling: touch
+    outline: 0
+
+
+
+  .screen-shot
+    img
+      height: 100vh
+      border: 15px #fff solid
+
+    .content-left
+      width: 100%
+      padding: 10px
+      text-align: center
+
+  .modal-dialog
+    z-index: 1050
+    width: 60%
+    margin: 30px auto
+    background: #f4f4f4
+    padding: 1.5%
+    border-radius: 10px
+
+  .modal::backdrop
+    background: red
+
+  .shot-nav
+    position: absolute
+    top: 50%
+    left: 0
+    right: 0
+    width: 100%
+    list-style: none
+
+    .shot-nav-prev
+      left: 150px
+      position: absolute
+      font-size: 50px
+
+    .shot-nav-next
+      position: absolute
+      right: 150px
+      font-size: 50px

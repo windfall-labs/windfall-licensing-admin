@@ -10,6 +10,7 @@ Ctrl = ($scope,$state,ReceiptImage)->
     userModal: false
   $scope.collection = []
   $scope.listType = 'list'
+  # $scope.preview_images = []
 
   $scope.getData =(page, limit)->
     ReceiptImage.getList(page: page, limit: limit, filter: $scope.searchText).$promise
@@ -20,6 +21,12 @@ Ctrl = ($scope,$state,ReceiptImage)->
   $scope.clearData =(page, limit)->
     if $scope.searchText == ""
       $scope.getData($scope.page, $scope.limit)
+
+  # $scope.getPrev =(receipt_image_id)->
+  #   debugger;
+  #   ReceiptImage.getPreviewImages(receiptiage_id_id: receipt_image_id).$promise
+  #     .then (data)->
+  #       debugger
 
   $scope.getData($scope.page, $scope.limit)
 

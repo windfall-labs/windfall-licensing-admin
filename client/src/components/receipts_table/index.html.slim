@@ -5,7 +5,7 @@ table.table.table-hover ng-cloak=""
       th
       th
   tbody
-    tr ng-repeat="obj in $ctrl.collection" ng-click="$ctrl.openImage($ctrl.getBannerUrl(obj))"
+    tr ng-repeat="obj in $ctrl.collection" ng-click="$ctrl.openModal(obj)"
       td
         .small-media
           img src="{{$ctrl.getBannerUrl(obj)}}"
@@ -18,3 +18,13 @@ table.table.table-hover ng-cloak=""
             | Receipt ID: {{obj.receipt_id}}
         .sub
           span ng-bind="$ctrl.getBannerUrl(obj)"
+
+
+receipt-image-modal(
+  obj="$ctrl.receiptImage"
+  loading="uiState.loading"
+  toggle="toggleModal(null)"
+  submit="save(obj)"
+  close-modal="$ctrl.closeModal(toggle)"
+  ng-if="$ctrl.toggleModal"
+)

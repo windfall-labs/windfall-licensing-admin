@@ -1,0 +1,35 @@
+.image-viewer
+  .modal
+    .modal-open
+      .modal-dialog.fade
+        .modal-header
+          a.btn-close ng-click="$ctrl.closeModal({toggle: false})" ×
+
+          .titled-list
+            h1.image-title
+              span
+                | {{receipt_image.banner_key.capitalize()}}
+              br
+              span.sub
+                | Receipt ID: {{receipt_image.receipt_id}}
+
+        .modal-body
+          .screen-shot
+            .content-left
+              img src="{{$ctrl.getBannerUrl(receipt_image)}}"
+            .content-right
+
+            ul.shot-nav
+              li.shot-nav-prev style=("display: list-item;")
+                a href="#" ng-click="$ctrl.goPrevImage(prevCollection)"
+                  i.icon.icon-arrow-left
+              li.shot-nav-next style=("display: list-item;")
+                a href="#" ng-click="$ctrl.goNextImage(nextCollection)"
+                  i.icon.icon-arrow-right
+
+          .preview-images
+            img src="{{$ctrl.getBannerUrl(prevObj)}}" ng-repeat="prevObj in prevCollection track by $index" ng-click="$ctrl.selectPreview(prevObj)"
+
+            img src="{{$ctrl.getBannerUrl(receipt_image)}}" ng-click="$ctrl.selectPreview(receipt_image)" class="img-active"
+
+            img src="{{$ctrl.getBannerUrl(nextObj)}}" ng-repeat="nextObj in nextCollection track by $index" ng-click="$ctrl.selectPreview(nextObj)"

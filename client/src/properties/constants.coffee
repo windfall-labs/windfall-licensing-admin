@@ -1,3 +1,5 @@
+@S3_IMAGE_URL = "https://windfall-licensing.s3.amazonaws.com/uploads/receipt_image/image/"
+
 @DATE_FORMAT = "MMM DD, YYYY"
 @DEFAULT_PER_PAGE = 20
 @YEAR_FILTER_RANGE = 5

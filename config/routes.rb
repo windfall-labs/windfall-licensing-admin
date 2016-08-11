@@ -17,7 +17,11 @@ Rails.application.routes.draw do
       end
 
 
-      resources :receipt_images, only: %i(index)
+      resources :receipt_images, only: %i(index) do
+        member do
+          get :preview_images
+        end
+      end
     end
 
   end

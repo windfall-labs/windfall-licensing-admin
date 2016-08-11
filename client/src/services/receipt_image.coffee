@@ -6,6 +6,11 @@ module = ($resource)->
         url: "/api/receipt_images"
         method: 'get'
         isArray: false
+
+      getPreviewImages:
+        url: "/api/receipt_images/:id/preview_images"
+        method: 'get'
+        isArray: false
     }
 
 module.$inject = ['$resource']

@@ -9,7 +9,6 @@ Ctrl = ->
   return
 
 
-
 angular.module('client').component 'userModal',
   templateUrl: 'components/user_modal/index.html'
   controller: Ctrl
