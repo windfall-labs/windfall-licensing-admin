@@ -1,4 +1,4 @@
-Ctrl = ->
+Ctrl =($rootScope)->
   ctrl = this
 
   ctrl.getBannerUrl =(data)=>
@@ -7,7 +7,21 @@ Ctrl = ->
   ctrl.openImage =(url)=>
     window.open url
 
+  ctrl.openModal =(obj)=>
+    # debugger
+    @.receiptImage = obj
+    @.toggleModal = true
+
+  ctrl.closeModal =(toggle)=>
+    console.log toggle
+
+    if toggle == false
+      @.toggleModal = toggle
+      $rootScope.bodyClass = ""
+
   return
+
+Ctrl.$inject = ['$rootScope']
 
 angular.module('client').component 'receiptsGridTable',
   templateUrl: 'components/receipts_grid_table/index.html'

@@ -1,5 +1,5 @@
 .col-md-12.row
-  .grid-type ng-repeat="obj in $ctrl.collection" ng-click="$ctrl.openImage($ctrl.getBannerUrl(obj))"
+  .grid-type ng-repeat="obj in $ctrl.collection" ng-click="$ctrl.openModal(obj)"
     img src="{{$ctrl.getBannerUrl(obj)}}"
     .grid-footer
       titled-list
@@ -9,3 +9,13 @@
         .sub
           span
             | {{obj.receipt_id}}
+
+
+receipt-image-modal(
+  obj="$ctrl.receiptImage"
+  loading="uiState.loading"
+  toggle="toggleModal(null)"
+  submit="save(obj)"
+  close-modal="$ctrl.closeModal(toggle)"
+  ng-if="$ctrl.toggleModal"
+)
