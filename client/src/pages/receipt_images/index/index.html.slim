@@ -12,9 +12,9 @@
       .fleft
         toggle-list-type list-type="listType"
 
-      pagination.fright page="page" count="uiState.count" on-change="getData(page, limit)"
+      //pagination.fright page="page" count="uiState.count" on-change="getData(page, limit)"
 
       receipts-table collection="collection" get-data="getData(page, limit)" ng-if="listType != 'grid'" page="page" increment-page="incrementPage(page)"
       receipts-grid-table collection="collection" ng-if="listType == 'grid'" page="page" increment-page="incrementPage(page)"
 
-      pagination.fright page="page" count="uiState.count" on-change="getData(page, limit)"
+      //pagination.fright page="page" count="uiState.count" on-change="getData(page, limit)"
