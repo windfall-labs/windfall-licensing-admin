@@ -23,9 +23,7 @@
     "angular-ui-router": "ui-router#^0.2.18",
     "ui-select": "angular-ui-select#^0.16.1",
     "sweetalert2": "^2.2.0",
-    "moment-timezone": "^0.5.4",
-    "angular-endless-scroll": "^0.1.0",
-    "ng-infinite-scroll": "^0.0.1"
+    "moment-timezone": "^0.5.4"
   },
   "resolutions": {
     "angular": "=1.4.5"
