@@ -15,6 +15,8 @@
 //= require angular-rails-templates
 //= require angular-growl-v2/build/angular-growl
 
+//= require ngInfiniteScroll
+
 //= require init
 //= require_tree ./config
 //= require_tree ./services

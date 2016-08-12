@@ -19,6 +19,12 @@ Ctrl =($rootScope)->
       @.toggleModal = toggle
       $rootScope.bodyClass = ""
 
+  ctrl.myPagingFunction =()->
+    console.log ">>>>>" + @.page
+    @.incrementPage({page: @.page})
+    @.page = @.page + 1
+
+
   return
 
 Ctrl.$inject = ['$rootScope']
@@ -29,3 +35,5 @@ angular.module('client').component 'receiptsGridTable',
   bindings:
     collection: "="
     searchText: "="
+    page: "="
+    incrementPage: "&"

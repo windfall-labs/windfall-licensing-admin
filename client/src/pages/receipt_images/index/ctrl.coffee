@@ -2,8 +2,9 @@ Ctrl = ($scope,$state,ReceiptImage)->
 
   $scope.currentUser = null
   $scope.page = 1
-  $scope.limit = 20
+  $scope.limit = 10
   $scope.searchText = ""
+  $scope.cacheSearchText = ""
   $scope.uiState =
     loading: false
     count: 0
@@ -13,15 +14,25 @@ Ctrl = ($scope,$state,ReceiptImage)->
   # $scope.preview_images = []
 
   $scope.getData =(page, limit)->
+
+
     ReceiptImage.getList(page: page, limit: limit, filter: $scope.searchText).$promise
       .then (data)->
-        $scope.collection = data.collection
+        if  $scope.cacheSearchText == $scope.searchText
+          angular.forEach data.collection, (receipt_image) ->
+            $scope.collection.push(receipt_image)
+        else
+          $scope.collection = data.collection
+
+        $scope.cacheSearchText = $scope.searchText
         $scope.uiState.count = data.count
 
   $scope.clearData =(page, limit)->
     if $scope.searchText == ""
       $scope.getData($scope.page, $scope.limit)
 
+  $scope.incrementPage =(page)->
+    $scope.getData(page, $scope.limit)
   # $scope.getPrev =(receipt_image_id)->
   #   debugger;
   #   ReceiptImage.getPreviewImages(receiptiage_id_id: receipt_image_id).$promise

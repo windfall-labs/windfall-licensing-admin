@@ -1,4 +1,4 @@
-Ctrl =($rootScope)->
+Ctrl =($rootScope, $scope)->
   ctrl = this
 
   @.receiptImage = null
@@ -22,13 +22,25 @@ Ctrl =($rootScope)->
       @.toggleModal = toggle
       $rootScope.bodyClass = ""
 
+  ctrl.myPagingFunction =()->
+    console.log ">>>>>" + @.page
+    @.incrementPage({page: @.page})
+    @.page = @.page + 1
+
+
+  # $scope.$on 'endlessScroll:next', ->
+  #   debugger
+
   return
 
-Ctrl.$inject = ['$rootScope']
+Ctrl.$inject = ['$rootScope', '$scope']
 
 angular.module('client').component 'receiptsTable',
   templateUrl: 'components/receipts_table/index.html'
   controller: Ctrl
   bindings:
     collection: "="
+    getData: "&"
     searchText: "="
+    page: "="
+    incrementPage: "&"

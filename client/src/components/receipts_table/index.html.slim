@@ -1,30 +1,31 @@
 
-table.table.table-hover ng-cloak=""
-  thead
-    tr
-      th
-      th
-  tbody
-    tr ng-repeat="obj in $ctrl.collection" ng-click="$ctrl.openModal(obj)"
-      td
-        .small-media
-          img src="{{$ctrl.getBannerUrl(obj)}}"
-      td.titled-list
-        h1.image-title
-          span
-            | {{obj.banner_key.capitalize()}}
-          br
-          span
-            | Receipt ID: {{obj.receipt_id}}
-        .sub
-          span ng-bind="$ctrl.getBannerUrl(obj)"
+div
+  div infinite-scroll="$ctrl.myPagingFunction()" infinite-scroll-distance="3"
+    table.table.table-hover ng-cloak=""
+      thead
+        tr
+          th
+          th
+      tbody
+        tr ng-repeat="obj in $ctrl.collection" ng-click="$ctrl.openModal(obj)"
+          td
+            .small-media
+              img src="{{$ctrl.getBannerUrl(obj)}}"
+          td.titled-list
+            h1.image-title
+              span
+                | {{obj.banner_key.capitalize()}}
+              br
+              span
+                | Receipt ID: {{obj.receipt_id}}
+            .sub
+              span ng-bind="$ctrl.getBannerUrl(obj)"
 
-
-receipt-image-modal(
-  obj="$ctrl.receiptImage"
-  loading="uiState.loading"
-  toggle="toggleModal(null)"
-  submit="save(obj)"
-  close-modal="$ctrl.closeModal(toggle)"
-  ng-if="$ctrl.toggleModal"
-)
+    receipt-image-modal(
+      obj="$ctrl.receiptImage"
+      loading="uiState.loading"
+      toggle="toggleModal(null)"
+      submit="save(obj)"
+      close-modal="$ctrl.closeModal(toggle)"
+      ng-if="$ctrl.toggleModal"
+    )
