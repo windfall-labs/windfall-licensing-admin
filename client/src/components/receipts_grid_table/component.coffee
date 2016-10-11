@@ -2,7 +2,7 @@ Ctrl =($rootScope)->
   ctrl = this
 
   ctrl.getBannerUrl =(data)=>
-    "https://windfall-licensing.s3.amazonaws.com/uploads/receipt_image/image/" + data.id + "/" + data.image
+    S3_IMAGE_URL + data.banner_id + "/" + data.image
 
   ctrl.openImage =(url)=>
     window.open url

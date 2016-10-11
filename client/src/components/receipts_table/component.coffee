@@ -5,7 +5,7 @@ Ctrl =($rootScope, $scope)->
   @.toggleModal = false
 
   ctrl.getBannerUrl =(data)->
-    S3_IMAGE_URL + data.id + "/" + data.image
+    S3_IMAGE_URL + data.banner_id + "/" + data.image
 
   ctrl.openImage =(url)=>
     window.open url

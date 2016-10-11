@@ -13,7 +13,7 @@ Ctrl =($scope, $rootScope, ReceiptImage) ->
       this.submit({obj: @.obj})
 
   ctrl.getBannerUrl =(receipt_image)->
-    S3_IMAGE_URL + receipt_image.id + "/" + receipt_image.image
+    S3_IMAGE_URL + receipt_image.banner_id + "/" + receipt_image.image
 
   ctrl.selectPreview =(obj)->
     ReceiptImage.getPreviewImages({id: obj.id}).$promise

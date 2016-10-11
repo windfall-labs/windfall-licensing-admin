@@ -1,4 +1,4 @@
-@S3_IMAGE_URL = "https://windfall-licensing.s3.amazonaws.com/uploads/receipt_image/image/"
+@S3_IMAGE_URL = "https://windfall-licensing.s3.amazonaws.com/uploads/receipt_images_v2/"
 
 @DATE_FORMAT = "MMM DD, YYYY"
 @DEFAULT_PER_PAGE = 20

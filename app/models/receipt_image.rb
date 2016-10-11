@@ -5,7 +5,7 @@ class ReceiptImage < ActiveRecord::Base
   def self.filter(search_text)
     sql = []
 
-    sql << "receipt_id ILIKE ?" unless search_text.to_i == 0
+    sql << "CAST(receipt_id AS TEXT) ILIKE ?" unless search_text.to_i == 0
     sql << "banner_key ILIKE ?" if search_text.present?
     sql << "image ILIKE ?" if search_text.present?
     # sql << "old_image_url ILIKE ?" if search_text.present?
