@@ -1,0 +1,2 @@
+class ImportedStore < ApplicationRecord
+end

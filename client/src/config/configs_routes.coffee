@@ -3,14 +3,14 @@ angular.module('client').config [
   ($stateProvider,$locationProvider,$urlRouterProvider) ->
 
     $stateProvider
-      .state 'admin.receipt_images',
-        url: '/receipt_images',
+      .state 'admin.configs',
+        url: '/configs',
         template: '<div ui-view></div>'
         abstract: true
 
-      .state 'admin.receipt_images.index',
+      .state 'admin.configs.index',
         url: '',
-        templateUrl: 'pages/receipt_images/index/index.html'
-        controller: 'ReceiptImagesIndexCtrl'
+        templateUrl: 'pages/configs/index/index.html'
+        controller: 'ConfigsIndexCtrl'
 
 ]

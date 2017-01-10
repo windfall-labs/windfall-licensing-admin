@@ -22,6 +22,18 @@ Rails.application.routes.draw do
           get :preview_images
         end
       end
+
+      resources :configs
+
+      resources :imported_stores do
+        member do
+          post :update_imported_stores
+        end 
+
+        collection do
+          get 'last_import_status'
+        end
+      end
     end
 
   end

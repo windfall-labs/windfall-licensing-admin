@@ -1,0 +1,14 @@
+.page-title
+  .title Elasticsearch Configs
+
+.inner-container
+  .panel
+    .panel-body
+      .fleft
+        .fleft
+          button.btn.btn-success ng-click="importStoreLocations()" Import Store Locations to Elasticsearch 
+        .fleft ng-if="lastImportStatus == false"
+          .spinner
+            img ng-src="/images/spin.gif"
+        .fleft ng-if="lastImportStatus == true"
+          i.icon.icon-check
