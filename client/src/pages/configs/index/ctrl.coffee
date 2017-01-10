@@ -36,7 +36,7 @@ Ctrl = ($scope,$state,StoreLocation,$timeout)->
       return
     ), 10000
 
-  $scope.kabute()
+  $scope.checkLastImportStatus()
 
 Ctrl.$inject = ['$scope','$state', 'StoreLocation', '$timeout']
 angular.module('client').controller('ConfigsIndexCtrl', Ctrl)
