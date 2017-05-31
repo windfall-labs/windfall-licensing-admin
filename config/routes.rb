@@ -23,12 +23,14 @@ Rails.application.routes.draw do
         end
       end
 
+      resources :rsd_products, only: %i(index)
+
       resources :configs
 
       resources :imported_stores do
         member do
           post :update_imported_stores
-        end 
+        end
 
         collection do
           get 'last_import_status'
