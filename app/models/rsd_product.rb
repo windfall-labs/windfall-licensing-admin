@@ -21,4 +21,11 @@ class RsdProduct < ActiveRecord::Base
     where(sql.join(" OR "), *values)
   end
 
+	def toggle_never_product
+		if self.never_product.eql?(true)
+			self.update_attribute(:never_product, false)
+		else
+			self.update_attribute(:never_product, true)
+		end
+	end
 end

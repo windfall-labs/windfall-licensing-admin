@@ -4,12 +4,12 @@ div
     table.table.table-hover ng-cloak=""
       thead
         tr
-          th Product Candidate?
-          th RSD
+          th.checkbox-action Never Product?
+          th Receipt Short Description
       tbody
         tr ng-repeat="obj in $ctrl.collection"
           td 
-            input type="checkbox" class="big-checkbox" ng-checked="$ctrl.determineRsdProductStatus(obj)" ng-click="$ctrl.updateNeverProduct(obj.id)"
+            input type="checkbox" class="big-checkbox" ng-checked="$ctrl.determineRsdProductStatus(obj)" ng-click="$ctrl.updateNeverProduct(obj)"
           td.titled-list
             h3
               | {{obj.rsd}}

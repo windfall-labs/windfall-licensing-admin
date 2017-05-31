@@ -23,7 +23,11 @@ Rails.application.routes.draw do
         end
       end
 
-      resources :rsd_products, only: %i(index)
+      resources :rsd_products, only: %i(index) do
+        member do
+          put :never_product
+        end
+      end
 
       resources :configs
 
