@@ -1,0 +1,15 @@
+
+div
+  div infinite-scroll="$ctrl.myPagingFunction()" infinite-scroll-distance="500"
+    table.table.table-hover ng-cloak=""
+      thead
+        tr
+          th.checkbox-action Never Product?
+          th Receipt Short Description
+      tbody
+        tr ng-repeat="obj in $ctrl.collection"
+          td 
+            input type="checkbox" class="big-checkbox" ng-checked="$ctrl.determineRsdProductStatus(obj)" ng-click="$ctrl.updateNeverProduct(obj)"
+          td.titled-list
+            h3
+              | {{obj.rsd}}

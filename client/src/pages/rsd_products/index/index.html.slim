@@ -1,0 +1,20 @@
+.page-title
+  .title Rsd Products
+
+.inner-container
+  .panel
+    .panel-body
+      .fleft
+        input.form-group.search-field.w20 ng-model="searchText" ng-change="clearData(page, limit)" placeholder="Search" ng-enter=="getData(page, limit)"
+
+        button.btn.btn-primary ng-click="getData(page, limit)" Search
+
+      / .fleft
+      /   toggle-list-type list-type="listType"
+
+      / pagination.fright page="page" count="uiState.count" on-change="getData(page, limit)"
+
+      rsd-products-table collection="collection" get-data="getData(page, limit)" ng-if="listType != 'grid'" page="page" increment-page="incrementPage(page)"
+      / receipts-grid-table collection="collection" ng-if="listType == 'grid'" page="page" increment-page="incrementPage(page)"
+
+      / pagination.fright page="page" count="uiState.count" on-change="getData(page, limit)"
