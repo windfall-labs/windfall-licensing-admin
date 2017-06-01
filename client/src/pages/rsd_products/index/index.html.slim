@@ -5,8 +5,19 @@
   .panel
     .panel-body
       .fleft
-        input.form-group.search-field.w20 ng-model="searchText" ng-change="clearData(page, limit)" placeholder="Search" ng-enter=="getData(page, limit)"
-
+        / input.form-group.search-field.w20 ng-model="searchText" ng-change="clearData(page, limit)" placeholder="Search" ng-enter=="getData(page, limit)"
+        p
+          span RSD
+          input.form-group.search-field.w20 ng-model="searchText" placeholder="Search"
+        p
+          span RSD
+          input.form-group.search-field.w20 ng-model="uniqueAcceptedCount" placeholder="Search"
+        p
+          span RSD
+          input.form-group.search-field.w20 ng-model="uniqueRejectedCount" placeholder="Search"
+        p
+          span RSD
+          input.form-group.search-field.w20 ng-model="receiptAcceptedCount" placeholder="Search"
         button.btn.btn-primary ng-click="getData(page, limit)" Search
 
       / .fleft
