@@ -6,6 +6,15 @@ div
         tr
           th.checkbox-action Never Product?
           th Receipt Short Description
+          th Accepted Count
+          th Rejected Count
+          th Unique Accepted Count
+          th Unique Rejected Count
+          th Alt Product
+          th Alt Product Unique Accepted Count
+          th Alt Product Accepted Count
+          th Receipt Accepted Count
+          th Receipt Rejected Count
       tbody
         tr ng-repeat="obj in $ctrl.collection"
           td 
@@ -13,3 +22,30 @@ div
           td.titled-list
             h3
               | {{obj.rsd}}
+          td
+            h4
+              | {{obj.accepted_count}}
+          td
+            h4
+              | {{obj.rejected_count}}
+          td
+            h4
+              | {{obj.unique_accepted_count}}
+          td
+            h4
+              | {{obj.unique_rejected_count}}
+          td
+            h4
+              | {{obj.alt_product}}
+          td
+            h4
+              | {{obj.alt_product_unique_accepted_count}}
+          td
+            h4
+              | {{obj.alt_product_accepted_count}}
+          td
+            h4
+              | {{obj.receipt_accepted_count}}
+          td
+            h4
+              | {{obj.receipt_rejected_count}}
