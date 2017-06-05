@@ -7,10 +7,12 @@
       .fleft.w50
         / input.form-group.search-field.w20 ng-model="searchText" ng-change="clearData(page, limit)" placeholder="Search" ng-enter=="getData(page, limit)"
         .row
-          .col-md-3
+          .col-md-6
             p
               span RSD
-              input.form-group.search-field.w20 ng-model="searchText"
+              input.form-group.search-field.w50 ng-model="searchText"
+        .row
+          .col-md-3
             p
               span Unique Accepted Count
               input.form-group.search-field.w20 ng-model="uniqueAcceptedCount"
@@ -20,6 +22,9 @@
             p
               span Receipt Accepted Count
               input.form-group.search-field.w20 ng-model="receiptAcceptedCount"
+            p
+              span Receipt Rejected Count
+              input.form-group.search-field.w20 ng-model="receiptRejectedCount"
           .col-md-3
             p
               span Accepted Count
