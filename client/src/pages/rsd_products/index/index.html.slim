@@ -4,20 +4,35 @@
 .inner-container
   .panel
     .panel-body
-      .fleft
+      .fleft.w50
         / input.form-group.search-field.w20 ng-model="searchText" ng-change="clearData(page, limit)" placeholder="Search" ng-enter=="getData(page, limit)"
-        p
-          span RSD
-          input.form-group.search-field.w20 ng-model="searchText"
-        p
-          span Unique Accepted Count
-          input.form-group.search-field.w20 ng-model="uniqueAcceptedCount"
-        p
-          span Unique Rejected Count
-          input.form-group.search-field.w20 ng-model="uniqueRejectedCount"
-        p
-          span Receipt Accepted Count
-          input.form-group.search-field.w20 ng-model="receiptAcceptedCount"
+        .row
+          .col-md-3
+            p
+              span RSD
+              input.form-group.search-field.w20 ng-model="searchText"
+            p
+              span Unique Accepted Count
+              input.form-group.search-field.w20 ng-model="uniqueAcceptedCount"
+            p
+              span Unique Rejected Count
+              input.form-group.search-field.w20 ng-model="uniqueRejectedCount"
+            p
+              span Receipt Accepted Count
+              input.form-group.search-field.w20 ng-model="receiptAcceptedCount"
+          .col-md-3
+            p
+              span Accepted Count
+              input.form-group.search-field.w20 ng-model="acceptedCount"
+            p
+              span Rejected Count
+              input.form-group.search-field.w20 ng-model="rejectedCount"
+            p
+              span Alt Product
+              input.form-group.search-field.w20 ng-model="altProduct"
+            p
+              span Alt Product Accepted Count
+              input.form-group.search-field.w20 ng-model="altProductAcceptedCount"
         button.btn.btn-primary ng-click="getData(page, limit)" Search
 
       / .fleft
