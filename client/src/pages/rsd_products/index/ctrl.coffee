@@ -21,7 +21,9 @@ Ctrl = ($scope,$state,RsdProduct)->
 
   $scope.getData =(page, limit)->
     # debugger
+
     RsdProduct.getList(page: page, limit: limit, filter: $scope.searchText, unique_accepted_count: $scope.uniqueAcceptedCount, unique_rejected_count: $scope.uniqueRejectedCount, receipt_accepted_count: $scope.receiptAcceptedCount, accepted_count: $scope.acceptedCount, rejected_count: $scope.rejectedCount, alt_product: $scope.altProduct, alt_product_accepted_count: $scope.altProductAcceptedCount).$promise
+
       .then (data)->
         if  $scope.cacheSearchText == $scope.searchText
           angular.forEach data.collection, (rsd_product) ->
