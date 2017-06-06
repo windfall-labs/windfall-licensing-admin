@@ -9,6 +9,7 @@ angular.module(
     'ngEnter',
     'angular-growl',
     'NgActive',
-    'infinite-scroll'
+    'infinite-scroll',
+    'tableSort'
   ]
 )
