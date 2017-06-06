@@ -16,6 +16,7 @@
 //= require angular-growl-v2/build/angular-growl
 
 //= require ngInfiniteScroll
+//= require angular-tablesort
 
 //= require init
 //= require_tree ./config

@@ -1,24 +1,24 @@
 
 div
   div infinite-scroll="$ctrl.myPagingFunction()" infinite-scroll-distance="3"
-    table.table.table-hover ng-cloak=""
+    <table class="table table-hover" ng-cloak="" ts-wrapper="">
       thead
         tr
           th.checkbox-action Never Product?
           th.checkbox-action Coupon?
           th.checkbox-action Always A Product?
-          th Receipt Short Description
-          th Accepted Count
-          th Rejected Count
-          th Unique Accepted Count
-          th Unique Rejected Count
-          th Alt Product
-          th Alt Product Unique Accepted Count
-          th Alt Product Accepted Count
-          th Receipt Accepted Count
-          th Receipt Rejected Count
+          th ts-criteria="rsd|lowercase" Receipt Short Description
+          th ts-criteria="accepted_count|lowercase" Accepted Count
+          th ts-criteria="rejected_count|lowercase" Rejected Count
+          th ts-criteria="unique_accepted_count|lowercase" Unique Accepted Count
+          th ts-criteria="unique_rejected_count|lowercase" Unique Rejected Count
+          th ts-criteria="alt_product|lowercase" Alt Product
+          th ts-criteria="alt_product_unique_accepted_count|lowercase" Alt Product Unique Accepted Count
+          th ts-criteria="alt_product_accepted_count|lowercase" Alt Product Accepted Count
+          th ts-criteria="receipt_accepted_count|lowercase" Receipt Accepted Count
+          th ts-criteria="receipt_rejected_count|lowercase" Receipt Rejected Count
       tbody
-        tr ng-repeat="obj in $ctrl.collection"
+        <tr ng-repeat="obj in $ctrl.collection" ts-repeat="">
           td 
             input type="checkbox" class="big-checkbox" ng-checked="$ctrl.determineRsdProductStatus(obj)" ng-click="$ctrl.updateNeverProduct(obj)"
           td 
