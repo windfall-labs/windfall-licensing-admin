@@ -5,6 +5,8 @@ div
       thead
         tr
           th.checkbox-action Never Product?
+          th.checkbox-action Coupon?
+          th.checkbox-action Always A Product?
           th Receipt Short Description
           th Accepted Count
           th Rejected Count
@@ -19,6 +21,10 @@ div
         tr ng-repeat="obj in $ctrl.collection"
           td 
             input type="checkbox" class="big-checkbox" ng-checked="$ctrl.determineRsdProductStatus(obj)" ng-click="$ctrl.updateNeverProduct(obj)"
+          td 
+            input type="checkbox" class="big-checkbox" ng-checked="$ctrl.determineRsdProductCouponStatus(obj)" ng-click="$ctrl.updateCoupon(obj)"
+          td 
+            input type="checkbox" class="big-checkbox" ng-checked="$ctrl.determineRsdProductAlwaysAProductStatus(obj)" ng-click="$ctrl.updateAlwaysAProduct(obj)"
           td.titled-list
             h3
               | {{obj.rsd}}

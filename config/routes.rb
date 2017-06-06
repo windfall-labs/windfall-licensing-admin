@@ -26,6 +26,8 @@ Rails.application.routes.draw do
       resources :rsd_products, only: %i(index) do
         member do
           put :never_product
+          put :always_a_product
+          put :coupon
         end
       end
 

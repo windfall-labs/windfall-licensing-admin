@@ -12,4 +12,16 @@ class Api::V1::RsdProductsController < ApiController
     render json: rsd_product
   end
 
+  def always_a_product
+    rsd_product = RsdProduct.find params[:id]
+    rsd_product.toggle_always_a_product
+    render json: rsd_product
+  end
+
+  def coupon
+    rsd_product = RsdProduct.find params[:id]
+    rsd_product.toggle_coupon
+    render json: rsd_product
+  end
+
 end
