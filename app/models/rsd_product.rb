@@ -35,6 +35,8 @@ class RsdProduct < ActiveRecord::Base
   def toggle_never_product
     if self.never_product.eql?(true)
       self.update_attribute(:never_product, false)
+      self.update_attribute(:coupon, false)
+      self.update_attribute(:always_a_product, false)
     else
       self.update_attribute(:never_product, true)
     end
@@ -43,6 +45,8 @@ class RsdProduct < ActiveRecord::Base
   def toggle_coupon
     if self.coupon.eql?(true)
       self.update_attribute(:coupon, false)
+      self.update_attribute(:never_product, false)
+      self.update_attribute(:always_a_product, false)
     else
       self.update_attribute(:coupon, true)
     end
@@ -50,7 +54,9 @@ class RsdProduct < ActiveRecord::Base
 
   def toggle_always_a_product
     if self.always_a_product.eql?(true)
+      self.update_attribute(:coupon, false)
       self.update_attribute(:always_a_product, false)
+      self.update_attribute(:never_product, false)
     else
       self.update_attribute(:always_a_product, true)
     end
