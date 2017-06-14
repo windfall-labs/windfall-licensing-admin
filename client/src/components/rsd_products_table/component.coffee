@@ -1,14 +1,16 @@
 Ctrl =($rootScope, $scope, RsdProduct)->
   ctrl = this
 
-  ctrl.updateNeverProduct =(obj)=>
-    RsdProduct.updateNeverProduct(id: obj.id)
+  ctrl.updateRsdProduct =(obj, field)=>
+    obj.never_product = false
+    obj.coupon = false
+    obj.always_a_product = false
 
-  ctrl.updateAlwaysAProduct =(obj)=>
-    RsdProduct.updateAlwaysAProduct(id: obj.id)
-
-  ctrl.updateCoupon =(obj)=>
-    RsdProduct.updateCoupon(id: obj.id)
+    obj[field] = true
+    RsdProduct.updateRsdProduct {id: obj.id, field: field}, (data) ->
+      obj.never_product = data.never_product
+      obj.coupon = data.coupon
+      obj.always_a_product = data.always_a_product
 
   ctrl.determineRsdProductStatus =(obj)=>
     return obj.never_product == true
