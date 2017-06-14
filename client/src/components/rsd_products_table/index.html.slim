@@ -20,11 +20,11 @@ div
       tbody
         <tr ng-repeat="obj in $ctrl.collection" ts-repeat="">
           td 
-            input type="checkbox" class="big-checkbox" ng-checked="$ctrl.determineRsdProductStatus(obj)" ng-click="$ctrl.updateNeverProduct(obj)"
+            input type="checkbox" class="big-checkbox" ng-model="obj.never_product" ng-change="$ctrl.updateRsdProduct(obj, 'never_product')"
           td 
-            input type="checkbox" class="big-checkbox" ng-checked="$ctrl.determineRsdProductCouponStatus(obj)" ng-click="$ctrl.updateCoupon(obj)"
+            input type="checkbox" class="big-checkbox"  ng-model="obj.coupon" ng-change="$ctrl.updateRsdProduct(obj, 'coupon')"
           td 
-            input type="checkbox" class="big-checkbox" ng-checked="$ctrl.determineRsdProductAlwaysAProductStatus(obj)" ng-click="$ctrl.updateAlwaysAProduct(obj)"
+            input type="checkbox" class="big-checkbox"  ng-model="obj.always_a_product" ng-change="$ctrl.updateRsdProduct(obj, 'always_a_product')"
           td.titled-list
             h3
               | {{obj.rsd}}

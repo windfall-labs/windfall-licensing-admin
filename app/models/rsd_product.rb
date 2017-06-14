@@ -32,33 +32,16 @@ class RsdProduct < ActiveRecord::Base
     where(sql.join(" AND "), *values)
   end
 
-  def toggle_never_product
-    if self.never_product.eql?(true)
-      self.update_attribute(:never_product, false)
-      self.update_attribute(:coupon, false)
-      self.update_attribute(:always_a_product, false)
+  def toggle_field(field)
+    if self.send(field.to_sym).eql?(true)
+      falsify_fields
     else
-      self.update_attribute(:never_product, true)
+      falsify_fields
+      self.update_attribute(field.to_sym, true)
     end
   end
 
-  def toggle_coupon
-    if self.coupon.eql?(true)
-      self.update_attribute(:coupon, false)
-      self.update_attribute(:never_product, false)
-      self.update_attribute(:always_a_product, false)
-    else
-      self.update_attribute(:coupon, true)
-    end
-  end
-
-  def toggle_always_a_product
-    if self.always_a_product.eql?(true)
-      self.update_attribute(:coupon, false)
-      self.update_attribute(:always_a_product, false)
-      self.update_attribute(:never_product, false)
-    else
-      self.update_attribute(:always_a_product, true)
-    end
+  def falsify_fields
+    self.update_attributes(never_product: false, always_a_product: false, coupon: false)
   end
 end
