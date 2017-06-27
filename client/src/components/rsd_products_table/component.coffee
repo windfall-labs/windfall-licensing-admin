@@ -26,6 +26,17 @@ Ctrl =($rootScope, $scope, RsdProduct)->
     @.incrementPage({page: @.page})
     @.page = @.page + 1
 
+  ctrl.getDataP = (page, limit, sort, dir) ->
+    @page = page
+    @limit = limit
+    @sort = sort
+    if dir == 'asc'
+      dir = 'desc'
+    else
+      dir = 'asc'
+    @dir = dir
+    @getData()
+
   return
 
 Ctrl.$inject = ['$rootScope', '$scope', 'RsdProduct']
@@ -38,4 +49,7 @@ angular.module('client').component 'rsdProductsTable',
     getData: "&"
     searchText: "="
     page: "="
+    limit: "="
+    sort: "="
+    dir: "="
     incrementPage: "&"

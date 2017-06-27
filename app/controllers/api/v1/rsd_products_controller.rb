@@ -11,7 +11,7 @@ class Api::V1::RsdProductsController < ApiController
                                       params[:alt_product_accepted_count],
                                       params[:alt_product],
                                       params[:receipt_rejected_count]
-                                    ).order("rsd ASC")
+                                    ).order(sort)
                                      .page(params[:page])
                                      .per(params[:limit])
     # rsd_products = RsdProduct.where(alt_product_accepted_count: 1).page(params[:page]).per(params[:limit])
@@ -24,11 +24,11 @@ class Api::V1::RsdProductsController < ApiController
     render json: rsd_product
   end
 
-  # def sort
-  #   if params[:sort].present? && params[:dir].present?
-  #     "#{params[:sort] params[:dir]}"
-  #   else
-  #     "rsd ASC"
-  #   end
-  # end
+  def sort
+    if params[:sort].present? && params[:dir].present?
+      "#{params[:sort]} #{params[:dir]}"
+    else
+      "rsd ASC"
+    end
+  end
 end
