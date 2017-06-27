@@ -7,18 +7,18 @@ div
           th.checkbox-action Never Product?
           th.checkbox-action Coupon?
           th.checkbox-action Always A Product?
-          th ts-criteria="rsd|lowercase" Receipt Short Description
-          th ts-criteria="accepted_count|lowercase" Accepted Count
-          th ts-criteria="rejected_count|lowercase" Rejected Count
-          th ts-criteria="unique_accepted_count|lowercase" Unique Accepted Count
-          th ts-criteria="unique_rejected_count|lowercase" Unique Rejected Count
-          th ts-criteria="alt_product|lowercase" Alt Product
-          th ts-criteria="alt_product_unique_accepted_count|lowercase" Alt Product Unique Accepted Count
-          th ts-criteria="alt_product_accepted_count|lowercase" Alt Product Accepted Count
-          th ts-criteria="receipt_accepted_count|lowercase" Receipt Accepted Count
-          th ts-criteria="receipt_rejected_count|lowercase" Receipt Rejected Count
+          th Receipt Short Description
+          th ng-click="$ctrl.getDataP($ctrl.page, $ctrl.limit, 'accepted_count', $ctrl.dir)" Accepted Count
+          th ng-click="$ctrl.getDataP($ctrl.page, $ctrl.limit, 'rejected_count', $ctrl.dir)" Rejected Count
+          th ng-click="$ctrl.getDataP($ctrl.page, $ctrl.limit, 'unique_accepted_count', $ctrl.dir)" Unique Accepted Count
+          th ng-click="$ctrl.getDataP($ctrl.page, $ctrl.limit, 'unique_rejected_count', $ctrl.dir)" Unique Rejected Count
+          th ng-click="$ctrl.getDataP($ctrl.page, $ctrl.limit, 'alt_product')" Alt Product
+          th ng-click="$ctrl.getDataP($ctrl.page, $ctrl.limit, 'alt_product_unique_accepted_count', $ctrl.dir)" Alt Product Unique Accepted Count
+          th ng-click="$ctrl.getDataP($ctrl.page, $ctrl.limit, 'alt_product_accepted_count', $ctrl.dir)" Alt Product Accepted Count
+          th ng-click="$ctrl.getDataP($ctrl.page, $ctrl.limit, 'receipt_accepted_count', $ctrl.dir)" Receipt Accepted Count
+          th ng-click="$ctrl.getDataP($ctrl.page, $ctrl.limit, 'receipt_rejected_count', $ctrl.dir)" Receipt Rejected Count
       tbody
-        <tr ng-repeat="obj in $ctrl.collection" ts-repeat="">
+        <tr ng-repeat="obj in $ctrl.collection">
           td 
             input type="checkbox" class="big-checkbox" ng-model="obj.never_product" ng-change="$ctrl.updateRsdProduct(obj, 'never_product')"
           td 
