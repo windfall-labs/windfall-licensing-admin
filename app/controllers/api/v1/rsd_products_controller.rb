@@ -11,7 +11,8 @@ class Api::V1::RsdProductsController < ApiController
                                       params[:alt_product_accepted_count],
                                       params[:alt_product],
                                       params[:receipt_rejected_count],
-                                      params[:banner_id]
+                                      params[:banner_id],
+                                      params[:is_product]
                                     ).order(sort)
                                      .page(params[:page])
                                      .per(params[:limit])
