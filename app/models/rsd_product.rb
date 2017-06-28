@@ -3,7 +3,7 @@ class RsdProduct < ActiveRecord::Base
   establish_connection "product_control_#{Rails.env}".to_sym
 
 
-  def self.filter(search_text, receipt_accepted_count, unique_rejected_count, unique_accepted_count, accepted_count, rejected_count, alt_product_accepted_count, alt_product, receipt_rejected_count, banner_id)
+  def self.filter(search_text, receipt_accepted_count, unique_rejected_count, unique_accepted_count, accepted_count, rejected_count, alt_product_accepted_count, alt_product, receipt_rejected_count, banner_id, is_product)
     sql = []
 
     sql << "rsd ILIKE ?" if search_text.present?
@@ -16,6 +16,8 @@ class RsdProduct < ActiveRecord::Base
     sql << "alt_product = ?" if alt_product.present?
     sql << "receipt_rejected_count = ?" if receipt_rejected_count.present?
     sql << "banner_id = ?" if banner_id.present?
+    sql << "always_a_product = ?" if is_product.present?
+    # sql << "always_a_product IS NULL" if is_product.present? && is_product.eql?('false')
 
     values = []
 
@@ -29,9 +31,13 @@ class RsdProduct < ActiveRecord::Base
     values << alt_product if alt_product.present?
     values << receipt_rejected_count.to_i if receipt_rejected_count.present?
     values << banner_id.to_i if banner_id.present?
+    if is_product.present?
+      values << (is_product.eql?('true') ? true : false)
+    end
 
-
-    where(sql.join(" AND "), *values)
+    joined_sql = sql.join(" AND ")
+    joined_sql += " OR always_a_product IS NULL" if (is_product.present? && is_product.eql?('false'))
+    where(joined_sql, *values)
   end
 
   def toggle_field(field)

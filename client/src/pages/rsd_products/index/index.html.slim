@@ -14,9 +14,14 @@
         .row
           .col-md-3
             p
+              span Product?
+              select ng-model="isProduct"
+                option value="true" True
+                option value="false" False
+          .col-md-3
+            p
               span Banner ID
               input.form-group.search-field.w20 ng-model="bannerId"
-            p
           .col-md-3
             p
               span Unique Accepted Count

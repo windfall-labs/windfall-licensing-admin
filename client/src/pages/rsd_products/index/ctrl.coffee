@@ -14,6 +14,7 @@ Ctrl = ($scope,$state,RsdProduct)->
   $scope.sort = ""
   $scope.dir = "ASC"
   $scope.bannerId = ""
+  $scope.isProduct = ""
   $scope.altProductAcceptedCount = ""
   $scope.cacheSearchText = ""
   $scope.cacheSearchText = ""
@@ -28,6 +29,7 @@ Ctrl = ($scope,$state,RsdProduct)->
   $scope.cachesort = ""
   $scope.cachedir = ""
   $scope.cacheBannerId = ""
+  $scope.cacheIsProduct = ""
   $scope.uiState =
     loading: false
     count: 0
@@ -36,10 +38,11 @@ Ctrl = ($scope,$state,RsdProduct)->
   $scope.listType = 'list'
 
   $scope.getData =(page, limit, sort, dir)->
-    RsdProduct.getList(page: page, limit: limit, dir: dir, sort: sort, filter: $scope.searchText, unique_accepted_count: $scope.uniqueAcceptedCount, unique_rejected_count: $scope.uniqueRejectedCount, receipt_accepted_count: $scope.receiptAcceptedCount, accepted_count: $scope.acceptedCount, rejected_count: $scope.rejectedCount, alt_product: $scope.altProduct, alt_product_accepted_count: $scope.altProductAcceptedCount, receipt_rejected_count: $scope.receiptRejectedCount, banner_id: $scope.bannerId).$promise
+    console.log page, limit, sort, dir
+    RsdProduct.getList(page: page, limit: limit, dir: dir, sort: sort, filter: $scope.searchText, unique_accepted_count: $scope.uniqueAcceptedCount, unique_rejected_count: $scope.uniqueRejectedCount, receipt_accepted_count: $scope.receiptAcceptedCount, accepted_count: $scope.acceptedCount, rejected_count: $scope.rejectedCount, alt_product: $scope.altProduct, alt_product_accepted_count: $scope.altProductAcceptedCount, receipt_rejected_count: $scope.receiptRejectedCount, banner_id: $scope.bannerId, is_product: $scope.isProduct).$promise
 
       .then (data)->
-        if ($scope.cacheBannerId == $scope.bannerId) && ($scope.cachedir == $scope.dir) && ($scope.cachesort == $scope.sort) && ($scope.cacheSearchText == $scope.searchText) && ($scope.cacheuniqueAcceptedCount == $scope.uniqueAcceptedCount) && ($scope.cacheuniqueRejectedCount == $scope.uniqueRejectedCount) && ($scope.cachereceiptAcceptedCount == $scope.receiptAcceptedCount) && ($scope.cacheacceptedCount == $scope.acceptedCount) && ($scope.cacherejectedCount == $scope.rejectedCount) && ($scope.cachealtProduct == $scope.altProduct) && ($scope.cachealtProductAcceptedCount == $scope.altProductAcceptedCount) && ($scope.cachereceiptRejectedCount == $scope.receiptRejectedCount)
+        if ($scope.cacheIsProduct == $scope.isProduct) && ($scope.cacheBannerId == $scope.bannerId) && ($scope.cachedir == $scope.dir) && ($scope.cachesort == $scope.sort) && ($scope.cacheSearchText == $scope.searchText) && ($scope.cacheuniqueAcceptedCount == $scope.uniqueAcceptedCount) && ($scope.cacheuniqueRejectedCount == $scope.uniqueRejectedCount) && ($scope.cachereceiptAcceptedCount == $scope.receiptAcceptedCount) && ($scope.cacheacceptedCount == $scope.acceptedCount) && ($scope.cacherejectedCount == $scope.rejectedCount) && ($scope.cachealtProduct == $scope.altProduct) && ($scope.cachealtProductAcceptedCount == $scope.altProductAcceptedCount) && ($scope.cachereceiptRejectedCount == $scope.receiptRejectedCount)
           angular.forEach data.collection, (rsd_product) ->
             $scope.collection.push(rsd_product)
         else
@@ -57,6 +60,7 @@ Ctrl = ($scope,$state,RsdProduct)->
         $scope.cachesort = $scope.sort
         $scope.cachedir = $scope.dir
         $scope.cacheBannerId = $scope.bannerId
+        $scope.cacheIsProduct = $scope.isProduct
         $scope.uiState.count = data.count
 
   $scope.clearData =(page, limit)->
