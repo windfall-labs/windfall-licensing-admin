@@ -30,6 +30,7 @@
     "jquery": "^3.2.1"
   },
   "resolutions": {
-    "angular": "=1.4.5"
+    "angular": "~1.5.5",
+    "jquery": "~3.2.1"
   }
 }
