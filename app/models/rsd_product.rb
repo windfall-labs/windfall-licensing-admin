@@ -3,7 +3,7 @@ class RsdProduct < ActiveRecord::Base
   establish_connection "product_control_#{Rails.env}".to_sym
 
 
-  def self.filter(search_text, receipt_accepted_count, unique_rejected_count, unique_accepted_count, accepted_count, rejected_count, alt_product_accepted_count, alt_product, receipt_rejected_count, banner_id, is_product)
+  def self.filter(search_text, receipt_accepted_count, unique_rejected_count, unique_accepted_count, accepted_count, rejected_count, alt_product_accepted_count, alt_product, receipt_rejected_count, banner_id, is_product,never_product,wrong_product)
     sql = []
 
     sql << "rsd ILIKE ?" if search_text.present?
@@ -17,6 +17,8 @@ class RsdProduct < ActiveRecord::Base
     sql << "receipt_rejected_count = ?" if receipt_rejected_count.present?
     sql << "banner_id = ?" if banner_id.present?
     sql << "always_a_product = ?" if is_product.present?
+    sql << "never_product = ?" if never_product.present?
+    sql << "wrong_product = ?" if wrong_product.present?
     # sql << "always_a_product IS NULL" if is_product.present? && is_product.eql?('false')
 
     values = []
@@ -34,6 +36,8 @@ class RsdProduct < ActiveRecord::Base
     if is_product.present?
       values << (is_product.eql?('true') ? true : false)
     end
+    values << (never_product.eql?('true') ? true : false) if never_product.present?
+    values << (wrong_product.eql?('true') ? true : false) if wrong_product.present?
 
     joined_sql = sql.join(" AND ")
     joined_sql += " OR always_a_product IS NULL" if (is_product.present? && is_product.eql?('false'))
@@ -50,6 +54,6 @@ class RsdProduct < ActiveRecord::Base
   end
 
   def falsify_fields
-    self.update_attributes(never_product: false, always_a_product: false, coupon: false)
+    self.update_attributes(never_product: false, always_a_product: false, wrong_product: false)
   end
 end

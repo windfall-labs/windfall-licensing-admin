@@ -14,9 +14,10 @@
 //= require angular-resource/angular-resource.min
 //= require angular-rails-templates
 //= require angular-growl-v2/build/angular-growl
-
 //= require ngInfiniteScroll
 //= require angular-tablesort
+//= require tagged-infinite-scroll/taggedInfiniteScroll
+//= require jquery/dist/jquery.min
 
 //= require init
 //= require_tree ./config

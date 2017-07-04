@@ -10,6 +10,7 @@ angular.module(
     'angular-growl',
     'NgActive',
     'infinite-scroll',
-    'tableSort'
+    'tableSort',
+    'tagged.directives.infiniteScroll'
   ]
 )

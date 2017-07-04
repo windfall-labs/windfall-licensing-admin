@@ -1,37 +1,37 @@
 
 div
-  div infinite-scroll="$ctrl.myPagingFunction()" infinite-scroll-distance="3"
+  div tagged-infinite-scroll="$ctrl.myPagingFunction()"
     <table class="table table-hover" ng-cloak="" ts-wrapper="">
       thead
         tr
-          th.checkbox-action Never Product?
-          th.checkbox-action Coupon?
-          th.checkbox-action Always A Product?
+          th.checkbox-action ng-click="$ctrl.sortData('never_product')" Never Product?
+          th.checkbox-action ng-click="$ctrl.sortData('wrong_product')" Wrong Product?
+          th.checkbox-action ng-click="$ctrl.sortData('always_a_product')" Always A Product?
           th Receipt Short Description
-          th ng-click="$ctrl.getDataP($ctrl.page, $ctrl.limit, 'accepted_count', $ctrl.dir)" Accepted Count
-          th ng-click="$ctrl.getDataP($ctrl.page, $ctrl.limit, 'rejected_count', $ctrl.dir)" Rejected Count
-          th ng-click="$ctrl.getDataP($ctrl.page, $ctrl.limit, 'unique_accepted_count', $ctrl.dir)" Unique Accepted Count
-          th ng-click="$ctrl.getDataP($ctrl.page, $ctrl.limit, 'unique_rejected_count', $ctrl.dir)" Unique Rejected Count
-          th ng-click="$ctrl.getDataP($ctrl.page, $ctrl.limit, 'alt_product')" Alt Product
-          th ng-click="$ctrl.getDataP($ctrl.page, $ctrl.limit, 'alt_product_unique_accepted_count', $ctrl.dir)" Alt Product Unique Accepted Count
-          th ng-click="$ctrl.getDataP($ctrl.page, $ctrl.limit, 'alt_product_accepted_count', $ctrl.dir)" Alt Product Accepted Count
-          th ng-click="$ctrl.getDataP($ctrl.page, $ctrl.limit, 'receipt_accepted_count', $ctrl.dir)" Receipt Accepted Count
-          th ng-click="$ctrl.getDataP($ctrl.page, $ctrl.limit, 'receipt_rejected_count', $ctrl.dir)" Receipt Rejected Count
+          th ng-click="$ctrl.sortData('accepted_count')" Accepted Count
+          th ng-click="$ctrl.sortData('rejected_count')" Rejected Count
+          th ng-click="$ctrl.sortData('unique_accepted_count')" Unique Accepted Count
+          th ng-click="$ctrl.sortData('unique_rejected_count')" Unique Rejected Count
+          th ng-click="$ctrl.sortData('alt_product')" Alt Product
+          th ng-click="$ctrl.sortData('alt_product_unique_accepted_count')" Alt Product Unique Accepted Count
+          th ng-click="$ctrl.sortData('alt_product_accepted_count')" Alt Product Accepted Count
+          th ng-click="$ctrl.sortData('receipt_accepted_count')" Receipt Accepted Count
+          th ng-click="$ctrl.sortData('receipt_rejected_count')" Receipt Rejected Count
           th Banner ID
       tbody
-        <tr ng-repeat="obj in $ctrl.collection">
+        tr ng-if="$ctrl.collection.length == 0"
+          td(style="text-align: center;" colspan="14")
+            span No Records Found
+        tr ng-repeat="obj in $ctrl.collection" ng-if="$ctrl.collection.length > 0"
           td 
             input type="checkbox" class="big-checkbox" ng-model="obj.never_product" ng-change="$ctrl.updateRsdProduct(obj, 'never_product')"
           td 
-            input type="checkbox" class="big-checkbox"  ng-model="obj.coupon" ng-change="$ctrl.updateRsdProduct(obj, 'coupon')"
+            input type="checkbox" class="big-checkbox"  ng-model="obj.wrong_product" ng-change="$ctrl.updateRsdProduct(obj, 'wrong_product')"
           td 
             input type="checkbox" class="big-checkbox"  ng-model="obj.always_a_product" ng-change="$ctrl.updateRsdProduct(obj, 'always_a_product')"
           td.titled-list
             h3
               | {{obj.rsd}}
-          td
-            h4
-              | {{obj.banner_id}}
           td
             h4
               | {{obj.accepted_count}}
@@ -59,3 +59,9 @@ div
           td
             h4
               | {{obj.receipt_rejected_count}}
+          td
+            h4
+              | {{obj.banner_id}}
+        tr ng-if="$ctrl.scrollLoading"
+          td(style="text-align: center;" colspan="14")
+            spinner

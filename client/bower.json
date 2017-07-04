@@ -24,7 +24,10 @@
     "ui-select": "angular-ui-select#^0.16.1",
     "sweetalert2": "^2.2.0",
     "moment-timezone": "^0.5.4",
-    "angular-tablesort": "^1.4.1"
+    "angular-tablesort": "^1.4.1",
+    "angular-endless-scroll": "^0.1.0",
+    "tagged-infinite-scroll": "^1.1.1",
+    "jquery": "^3.2.1"
   },
   "resolutions": {
     "angular": "=1.4.5"

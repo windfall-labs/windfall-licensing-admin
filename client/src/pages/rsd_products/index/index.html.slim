@@ -4,6 +4,9 @@
 .inner-container
   .panel
     .panel-body
+      .loading-overlay(ng-if="uiState.loading")
+        spinner
+      
       .fleft.w50
         / input.form-group.search-field.w20 ng-model="searchText" ng-change="clearData(page, limit)" placeholder="Search" ng-enter=="getData(page, limit)"
         .row
@@ -13,11 +16,27 @@
               input.form-group.search-field.w50 ng-model="searchText"
         .row
           .col-md-3
-            p
-              span Product?
-              select ng-model="isProduct"
-                option value="true" True
-                option value="false" False
+            .row.product-status
+              .col-md-6.filter-label
+                span Always a Product?
+              .col-md-6
+                select ng-model="isProduct"
+                  option value="true" True
+                  option value="false" False
+            .row.product-status 
+              .col-md-6.filter-label
+                span Never a Product?
+              .col-md-6
+                select ng-model="neverProduct"
+                  option value="true" True
+                  option value="false" False
+            .row.product-status 
+              .col-md-6.filter-label
+                span Wrong Product?
+              .col-md-6
+                select ng-model="wrongProduct"
+                  option value="true" True
+                  option value="false" False
           .col-md-3
             p
               span Banner ID
@@ -44,11 +63,11 @@
               input.form-group.search-field.w20 ng-model="rejectedCount"
             p
               span Alt Product
+              br
               input.form-group.search-field.w20 ng-model="altProduct"
             p
               span Alt Product Accepted Count
               input.form-group.search-field.w20 ng-model="altProductAcceptedCount"
-        button.btn.btn-primary ng-click="getData(page, limit)" Search
+        button.btn.btn-primary ng-click="triggerSearch()" Search
 
-      rsd-products-table collection="collection" get-data="getData(page, limit, sort, dir)" limit="limit" dir="dir" sort="sort" ng-if="listType != 'grid'" page="page" increment-page="incrementPage(page)"
-
+      rsd-products-table collection="collection" get-data="getData(obj)" limit="limit" dir="dir" sort="sort" ng-if="listType != 'grid'" page="page" increment-page="incrementPage(page)" scroll-loading="uiState.scrollLoading" loading="uiState.loading"
