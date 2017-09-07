@@ -1,0 +1,70 @@
+.page-title
+  .title Upc Products
+
+.inner-container
+  .panel
+    .panel-body
+      .loading-overlay(ng-if="uiState.loading")
+        spinner
+      .fleft.w50
+        .row
+          .col-md-6
+            p 
+              span RPN
+              input.form-group.search-field.w50 ng-model="search.filter"
+        .row
+          .col-md-3
+            .row.product-status
+              .col-md-6.filter-label
+                span Always a Product?
+              .col-md-6
+                select ng-model="search.always_a_product"
+                  option value="true" True
+                  option value="false" False
+            .row.product-status
+              .col-md-6.filter-label
+                span Never a Product
+              .col-md-6
+                select ng-model="search.never_product"
+                  option value="true" True
+                  option value="false" False
+            .row.product-status
+              .col-md-6.filter-label
+                span Wrong Product
+              .col-md-6
+                select ng-model="search.wrong_product"
+                  option value="true" True
+                  option value="false" False
+          .col-md-3
+            p 
+              span Banner ID
+              input.form-group.search-field.w20 ng-model="search.banner_id"
+          .col-md-3
+            p 
+              span Unique Accepted Count
+              input.form-group.search-field.w20 ng-model="search.unique_accepted_count"
+            p 
+              span Unique Rejected Count
+              input.form-group.search-field.w20 ng-model="search.unique_rejected_count"
+            p 
+              span Receipt Accepted Count
+              input.form-group.search-field.w20 ng-model="search.receipt_accepted_count"
+            p 
+              span Receipt Rejected Count
+              input.form-group.search-field.w20 ng-model="search.receipt_rejected_count"
+          .col-md-3
+            p 
+              span Accepted Count
+              input.form-group.search-field.w20 ng-model="search.accepted_count"
+            p 
+              span Rejected Count
+              input.form-group.search-field.w20 ng-model="search.rejected_count"
+            p 
+              span Alt Product
+              br
+              input.form-group.search-field.w20 ng-model="search.alt_product"
+            p 
+              span Alt Product Accepted Count
+              input.form-group.search-field.w20 ng-model="search.alt_product_accepted_count"
+        button.btn.btn-primary ng-click="triggerSearch()" Search
+      upc-products-table collection="collection"
