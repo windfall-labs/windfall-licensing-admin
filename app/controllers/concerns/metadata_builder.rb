@@ -20,7 +20,7 @@ module MetadataBuilder
 
   def render_with_meta_data collection=nil,count=nil
     collection ||= @collection
-    render json: {collection: collection, count: count || collection.total_count, page: current_page}
+    render status: 200, json: {collection: collection, count: count || collection.total_count, page: current_page}
   end
 
 end

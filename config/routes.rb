@@ -40,6 +40,8 @@ Rails.application.routes.draw do
           get 'last_import_status'
         end
       end
+
+      resources :tags, only: %i(index)
     end
 
   end

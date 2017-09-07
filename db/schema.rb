@@ -21,15 +21,4 @@ ActiveRecord::Schema.define(version: 20170110115434) do
     t.datetime "updated_at",                 null: false
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "email"
-    t.string   "encrypted_password"
-    t.string   "access_token"
-    t.boolean  "is_active",          default: true
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
-  end
-
 end

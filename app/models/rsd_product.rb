@@ -2,6 +2,18 @@ class RsdProduct < ActiveRecord::Base
 
   establish_connection "product_control_#{Rails.env}".to_sym
 
+  has_many :tags_logs
+
+  def tags
+    tags_logs = self.tags_logs.where("tag IN (?)", self.rsd.split(" "))
+    if tags_logs.present?
+      tags_logs.map do |tags_log|
+        clean_tag_or_tag(tags_log)
+      end
+    else
+      []
+    end
+  end
 
   def self.filter(search_text, receipt_accepted_count, unique_rejected_count, unique_accepted_count, accepted_count, rejected_count, alt_product_accepted_count, alt_product, receipt_rejected_count, banner_id, is_product,never_product,wrong_product)
     sql = []
@@ -55,5 +67,16 @@ class RsdProduct < ActiveRecord::Base
 
   def falsify_fields
     self.update_attributes(never_product: false, always_a_product: false, wrong_product: false)
+  end
+
+  private
+
+  def clean_tag_or_tag(tags_log)
+    clean_tag = tags_log.clean_tag
+    if clean_tag.present?
+      clean_tag.clean_tag
+    else
+      tags_log.tag
+    end
   end
 end

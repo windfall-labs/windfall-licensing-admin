@@ -9,7 +9,7 @@ describe "POST /api/session" do
 
   describe 'active user' do
     before do
-      post_request({email: "test@test.com", password: "password"})
+      post_request({email: user.email, password: "password1"})
     end
 
     it 'returns success stat' do
@@ -17,14 +17,13 @@ describe "POST /api/session" do
     end
 
     it 'returns session information' do
-      expect(json_response["email"]).to eq "test@test.com"
+      expect(json_response["email"]).to eq user.email
       expect(json_response["access_token"]).to be_present
     end
   end
 
   describe 'inactive user' do
     before do
-      current_user.update({is_active: false})
       post_request({email: "test@test.com", password: "password"})
     end
 
