@@ -26,6 +26,7 @@ Ctrl = ($scope, Tags, growl)->
     Tags.createTag({tag: obj}).$promise
       .then (data)->
         growl.success(MESSAGES.TAGS_SUCESS)
+        $scope.collection.splice(index, 1)
       .finally ->
         $scope.uiState.loading = false
   $scope.getRsds()

@@ -19,7 +19,7 @@ class Api::V1::TagsController < ApiController
     #                                  .page(params[:page])
     #                                  .per(params[:limit])
     # rsd_products = RsdProduct.where(alt_product_accepted_count: 1).page(params[:page]).per(params[:limit])
-    rsd_products = RsdProduct.by_limit(page_params).order("updated_at DESC")
+    rsd_products = RsdProduct.where(product: true).by_limit(page_params).order("unique_accepted_count DESC")
 
     render_with_meta_data RsdProducts::Builder.index(rsd_products), RsdProduct.count
   end
