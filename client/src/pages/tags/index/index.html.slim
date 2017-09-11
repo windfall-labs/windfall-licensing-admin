@@ -1,2 +1,15 @@
 .page-title
   .title Tags
+
+.inner-container
+  .panel
+    .panel-body
+      .loading-overlay(ng-if="uiState.loading") 
+        spinner
+      .fleft.w50
+        .row 
+          .col-md-6
+            p 
+              span Banner Id
+              input.form-group.search-field.w20 ng-model="search.banner_id"
+      tags-table collection="collection" save-tag="saveTag(obj,index)" next-page="nextPage()" loading="uiState.scrollLoading"

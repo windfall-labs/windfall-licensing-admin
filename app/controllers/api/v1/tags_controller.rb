@@ -1,4 +1,5 @@
 class Api::V1::TagsController < ApiController
+  before_action :find_rsd_product, only: [:create]
   def index
     # rsd_products = RsdProduct.filter(
     #                                   params[:filter],
@@ -18,12 +19,15 @@ class Api::V1::TagsController < ApiController
     #                                  .page(params[:page])
     #                                  .per(params[:limit])
     # rsd_products = RsdProduct.where(alt_product_accepted_count: 1).page(params[:page]).per(params[:limit])
-    rsd_products = RsdProduct.all
+    rsd_products = RsdProduct.by_limit(page_params).order("updated_at DESC")
 
-    render_with_meta_data RsdProducts::Builder.index(rsd_products), rsd_products.count
+    render_with_meta_data RsdProducts::Builder.index(rsd_products), RsdProduct.count
   end
 
   def create
+    if RsdProducts::TagsProcessor.new(@rsd_product, tags_params[:tags]).process
+      render_success
+    end
   end
 
   def update
@@ -35,13 +39,16 @@ class Api::V1::TagsController < ApiController
   private
   def tags_params
     params.require(:tag).permit(
-      :tag_id,
-      :clean_tag
+      :rsd_product_id,
+      tags: []
     )
   end
 
   def page_params
-    params.permit(:page)
+    {
+      page: params[:page] || 1,
+      limit: 20
+    }
   end
 
   def sort
@@ -50,5 +57,9 @@ class Api::V1::TagsController < ApiController
     else
       "rsd ASC"
     end
+  end
+
+  def find_rsd_product
+    @rsd_product = RsdProduct.find(tags_params[:rsd_product_id])
   end
 end

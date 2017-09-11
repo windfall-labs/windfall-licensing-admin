@@ -28,6 +28,7 @@
   ACCESS_DENIED: "Access Denied"
   GITHUB_ERROR: "Assign github username first"
   NO_GITHUB_USERNAME: "User has no github username"
+  TAGS_SUCESS: "Tags updated"
 
 @STATUS_OPTIONS = [
   {

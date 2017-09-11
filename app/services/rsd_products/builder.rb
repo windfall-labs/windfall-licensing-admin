@@ -6,9 +6,18 @@ class RsdProducts::Builder
       {
         rsd_product_id: rsd_product.id,
         rsd: rsd_product.rsd,
-        tags: rsd_product.tags,
+        tags: get_tags(rsd_product),
         manually_inspected: rsd_product.manually_inspected
       }
+    end
+  end
+
+  def self.get_tags rsd_product
+    tags = rsd_product.tags
+    if tags.size > 0
+      tags
+    else
+      rsd_product.rsd.split(' ')
     end
   end
 end

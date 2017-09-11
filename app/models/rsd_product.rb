@@ -1,5 +1,5 @@
 class RsdProduct < ActiveRecord::Base
-
+  include Searchable
   establish_connection "product_control_#{Rails.env}".to_sym
 
   has_many :tags_logs

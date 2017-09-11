@@ -32,11 +32,14 @@ RSpec.configure do |config|
 
   config.infer_spec_type_from_file_location!
 
+  config.tty = true
+  
   config.before(:each) do
     Sidekiq::Worker.clear_all
   end
 
 end
+
 
 
 FactoryGirl::SyntaxRunner.class_eval do

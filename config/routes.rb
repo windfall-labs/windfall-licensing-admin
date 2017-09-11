@@ -41,7 +41,7 @@ Rails.application.routes.draw do
         end
       end
 
-      resources :tags, only: %i(index)
+      resources :tags
     end
 
   end
