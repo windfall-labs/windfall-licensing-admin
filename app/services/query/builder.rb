@@ -4,6 +4,8 @@ module Query
       field_type = get_field_type
       if field_type.blank?
         ""
+      elsif field_type == "in" || field_type == "not in"
+        ApplicationRecord.send(:sanitize_sql_array, ["#{get_key_substitute} #{get_operator} (?)",get_value_substition])
       else
         ApplicationRecord.send(:sanitize_sql_array, ["#{get_key_substitute} #{get_operator} ?",get_value_substition])
       end
@@ -12,6 +14,8 @@ module Query
     def get_key_substitute
       if @key == "filter"
         return @table == "rsd_products" ? "rsd" : "receipt_product_number"
+      elsif @key == "excluded_ids"
+        "id"
       else
         @key
       end
@@ -31,6 +35,8 @@ module Query
         "equal"
       when *LIKE_FIELDS
         "like"
+      when *NOT_IN_FIELDS
+        "not in"
       else
         ""
       end
@@ -42,6 +48,8 @@ module Query
         "="
       when "like"
         "ILIKE"
+      when "not in"
+        "NOT IN"
       else
         ""
       end

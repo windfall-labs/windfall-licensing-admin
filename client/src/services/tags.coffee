@@ -7,7 +7,11 @@ module = ($resource)->
         method: 'get'
         isArray: false
 
-      createTag:
+      # createTag:
+      #   url: "/api/tags.json"
+      #   method: 'post'
+      #   isArray: false
+      createTags:
         url: "/api/tags.json"
         method: 'post'
         isArray: false

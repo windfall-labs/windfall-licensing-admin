@@ -1,5 +1,5 @@
 class Api::V1::TagsController < ApiController
-  before_action :find_rsd_product, only: [:create]
+  # before_action :find_rsd_product, only: [:create]
   def index
     # rsd_products = RsdProduct.filter(
     #                                   params[:filter],
@@ -19,13 +19,14 @@ class Api::V1::TagsController < ApiController
     #                                  .page(params[:page])
     #                                  .per(params[:limit])
     # rsd_products = RsdProduct.where(alt_product_accepted_count: 1).page(params[:page]).per(params[:limit])
-    rsd_products = RsdProduct.where(product: true).by_limit(page_params).order("unique_accepted_count DESC")
+    # rsd_products = RsdProduct.where("product = ? AND id not in (?)", true, params[:excluded_ids] || []).by_limit(page_params).order("unique_accepted_count DESC")
 
-    render_with_meta_data RsdProducts::Builder.index(rsd_products), RsdProduct.count
+    # render_with_meta_data RsdProducts::Builder.index(rsd_products), RsdProduct.count
+    render json: RsdProducts::Builder.new(index_params).tags_index
   end
 
   def create
-    if RsdProducts::TagsProcessor.new(@rsd_product, tags_params[:tags]).process
+    if Tags::Processor.new(tags_params).process
       render_success
     end
   end
@@ -38,16 +39,14 @@ class Api::V1::TagsController < ApiController
 
   private
   def tags_params
-    params.require(:tag).permit(
-      :rsd_product_id,
-      tags: []
-    )
+    params.require(:tags)
   end
 
-  def page_params
+  def index_params
     {
-      page: params[:page] || 1,
-      limit: 20
+      excluded_ids: JSON.parse(params[:excluded_ids]) || [],
+      product: true,
+      banner_id: params[:banner_id]
     }
   end
 

@@ -13,6 +13,7 @@ class RsdProducts::TagsProcessor
       process_tag(row, index)
       process_tag(row, index, false) if index < rsd_array.size - 1
     end
+    @rsd_product.update_attributes(manually_inspected: true)
   end
 
   private

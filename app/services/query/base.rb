@@ -12,10 +12,14 @@ module Query
       "banner_id",
       "always_a_product",
       "never_product",
-      "wrong_product"
+      "wrong_product",
+      "banner_id"
     ]
     LIKE_FIELDS = [
       "filter"
+    ]
+    NOT_IN_FIELDS = [
+      "excluded_ids"
     ]
 
     def initialize key, value, table

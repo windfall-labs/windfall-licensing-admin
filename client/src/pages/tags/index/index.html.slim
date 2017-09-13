@@ -11,5 +11,8 @@
           .col-md-6
             p 
               span Banner Id
-              input.form-group.search-field.w20 ng-model="search.banner_id"
-      tags-table collection="collection" save-tag="saveTag(obj,index)" next-page="nextPage()" loading="uiState.scrollLoading"
+              input.form-group.search-field.w20 ng-model="uiState.banner_id"
+          .col-md-2.col-md-push-4
+            p 
+              button.btn.btn-primary.float-left(ng-click="getRsds()") Search
+      tags-table collection="collection" save-tag="saveTag(obj,index)" next-page="nextPage()" loading="uiState.scrollLoading" save="save()"

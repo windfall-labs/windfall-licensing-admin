@@ -1,7 +1,7 @@
 Ctrl =($rootScope, $scope)->
   ctrl = this
-  ctrl.save =(obj, index)->
-    ctrl.saveTag(obj: obj, index: index)
+  # ctrl.save =(obj, index)->
+  #   ctrl.saveTag(obj: obj, index: index)
   return
 Ctrl.$inject = ['$rootScope', '$scope']
 angular.module('client').component 'tagsTable',
@@ -20,3 +20,4 @@ angular.module('client').component 'tagsTable',
     loading: "="
     saveTag: "&"
     nextPage: "&"
+    save: "&"
