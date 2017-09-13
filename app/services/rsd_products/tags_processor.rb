@@ -26,11 +26,17 @@ class RsdProducts::TagsProcessor
   end
 
   def create_clean_tag tag, clean_tag
-    tag_obj = Tag.find_or_initialize_by(tag: tag)
-    tag_obj.save!
+    tag_obj = create_tag tag
     clean_tag_obj = CleanTag.find_or_initialize_by(tag_id: tag_obj.id, clean_tag: clean_tag)
+    clean_tag_obj.tag_count = clean_tag_obj.tag_count.present? ? clean_tag_obj.tag_count + 1 : 1
     clean_tag_obj.save!
     clean_tag_obj
+  end
+
+  def create_tag tag
+    tag_obj = Tag.find_or_initialize_by(tag: tag)
+    tag_obj.save!
+    tag_obj
   end
 
   def get_unclean_tag tag

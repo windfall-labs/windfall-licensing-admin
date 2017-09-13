@@ -18,18 +18,18 @@ Ctrl = ($scope, Tags, growl)->
       .finally ->
         $scope.uiState.loading = false
         return
-  $scope.save =->
-    params = []
-    angular.forEach $scope.collection, (product)->
-      if product.selected
-        params.push(product)
-      else
-        $scope.uiState.excluded_ids.push(product.rsd_product_id)
-    $scope.saveRsd(params)
+  # $scope.save =->
+  #   # params = []
+  #   # angular.forEach $scope.collection, (product)->
+  #   #   if product.selected
+  #   #     params.push(product)
+  #   #   else
+  #   #     $scope.uiState.excluded_ids.push(product.rsd_product_id)
+  #   $scope.saveRsd(params)
 
-  $scope.saveRsd =(params)->
+  $scope.saveRsd =->
     $scope.uiState.loading = true
-    Tags.createTags({tags: params}).$promise
+    Tags.createTags({tags: $scope.collection}).$promise
       .then (data)->
         growl.success(MESSAGES.TAGS_SUCESS)
         $scope.getRsds()
