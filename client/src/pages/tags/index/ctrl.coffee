@@ -14,6 +14,7 @@ Ctrl = ($scope, Tags, growl)->
         $scope.collection = []
         angular.forEach data.collection, (rsd_product)->
           rsd_product.selected = true
+          rsd_product.tags_logs = angular.copy(rsd_product.tags)
           $scope.collection.push(rsd_product)
       .finally ->
         $scope.uiState.loading = false

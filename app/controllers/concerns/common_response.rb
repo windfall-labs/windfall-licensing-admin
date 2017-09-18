@@ -27,6 +27,11 @@ module CommonResponse
       render json: { error: 'Your account is inactive' }, status: :unauthorized # unofficial expired session
     end
 
+    class InvalidTagsError < StandardError; end
+    rescue_from InvalidTagsError do
+      render json: {error: 'Tags count and Clean Tags count does not match. Please fill up form accordingly'}, status: 422
+    end
+
     #
     # raise if a process is halted
     #

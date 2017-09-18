@@ -59,6 +59,6 @@ class Api::V1::TagsController < ApiController
   end
 
   def find_rsd_product
-    @rsd_product = RsdProduct.find(tags_params[:rsd_product_id])
+    @rsd_product = RsdProduct.includes(:tags_logs).find(tags_params[:rsd_product_id])
   end
 end

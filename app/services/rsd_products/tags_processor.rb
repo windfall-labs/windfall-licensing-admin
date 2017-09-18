@@ -1,14 +1,16 @@
 class RsdProducts::TagsProcessor
 
-  attr_accessor :rsd_product, :tags, :rsd_array
+  attr_accessor :rsd_product, :tags, :rsd_array, :tags_logs
 
-  def initialize rsd_product, tags=[]
+  def initialize rsd_product, params={}
     @rsd_product = rsd_product
-    @tags = tags
+    @tags = params[:tags] || []
+    @tags_logs = params[:tags_logs] || []
+    prepare_tags
   end
 
   def process
-    @rsd_array = rsd_product.rsd.split(' ')
+    get_rsd_array
     rsd_array.each_with_index do |row, index|
       process_tag(row, index)
       process_tag(row, index, false) if index < rsd_array.size - 1
@@ -17,6 +19,22 @@ class RsdProducts::TagsProcessor
   end
 
   private
+
+
+  def prepare_tags
+    tags_logs.reject!{|x| x.blank?}
+    tags.reject!{|x| x.blank?}
+    raise InvalidTagsError if tags.size != tags_logs.size
+  end
+
+  def get_rsd_array
+    if rsd_product.rsd.split(' ').size != tags_logs.size
+      rsd_product.tags_logs.delete_all
+      @rsd_array = tags_logs
+    else
+      @rsd_array = rsd_product.rsd.split(' ')
+    end
+  end
   def process_tag tag, index, indiv=true
     tag = indiv ? tag : "#{rsd_array[index]} #{rsd_array[index+1]}"
     unclean_tag = get_unclean_tag(tag)
@@ -44,5 +62,6 @@ class RsdProducts::TagsProcessor
     unclean_tag.save!
     unclean_tag
   end
+
 
 end

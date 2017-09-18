@@ -7,9 +7,10 @@ div
           th RSD
           th Unique Accepted Count
           th Tags
+          th Clean Tags
       tbody
         tr ng-if="$ctrl.collection.length == 0 && !$ctrl.loading"
-          td(style="text-align: center;" colspan="4")
+          td(style="text-align: center;" colspan="5")
             span No Records Found
         tr ng-repeat="obj in $ctrl.collection track by $index" ng-if="$ctrl.collection.length > 0"
           td 
@@ -17,13 +18,16 @@ div
           td ng-bind="obj.rsd"
           td ng-bind="obj.unique_accepted_count"
           td
+            div ng-repeat="tag in obj.tags_logs track by $index"
+              input.form-group.search-field.float-left ng-model="obj.tags_logs[$index]"
+          td
             div ng-repeat="tag in obj.tags track by $index"
               input.form-group.search-field.float-left ng-model="obj.tags[$index]"
         tr
-          td(style="text-align: right;" colspan="4")
+          td(style="text-align: right;" colspan="5")
             button.btn.btn-primary.float-left(ng-click="$ctrl.save()") Save
         tr ng-if="$ctrl.loading"
-          td(style="text-align: center;" colspan="4")
+          td(style="text-align: center;" colspan="5")
             spinner
             
           
