@@ -5,26 +5,42 @@ Ctrl = ($scope,$state,ReceiptImage)->
   $scope.limit = 10
   $scope.searchText = ""
   $scope.cacheSearchText = ""
+  $scope.cachePage = 1
   $scope.uiState =
     loading: false
     count: 0
     userModal: false
   $scope.collection = []
   $scope.listType = 'list'
+  $scope.confidenceLevel =
+    min: 0
+    max: 1
+  $scope.sliderSettings =
+    value: 0.9
+    options:
+      floor: 0
+      ceil: 1
+      step: 0.1
+      precision: 1
+  $scope.createdAt =
+    min: null
+    max: null
+  $scope.sort = "created_at DESC"
   # $scope.preview_images = []
 
   $scope.getData =(page, limit)->
 
 
-    ReceiptImage.getList(page: page, limit: limit, filter: $scope.searchText).$promise
+    ReceiptImage.getList(page: page, limit: limit, filter: $scope.searchText, sort: $scope.sort, date_filter: $scope.createdAt, confidence_filter: $scope.confidenceLevel).$promise
       .then (data)->
-        if  $scope.cacheSearchText == $scope.searchText
+        if $scope.cacheSearchText == $scope.searchText && $scope.cachePage != $scope.page
           angular.forEach data.collection, (receipt_image) ->
             $scope.collection.push(receipt_image)
         else
           $scope.collection = data.collection
 
         $scope.cacheSearchText = $scope.searchText
+        $scope.cachePage = $scope.page
         $scope.uiState.count = data.count
 
   $scope.clearData =(page, limit)->

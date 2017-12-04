@@ -21,6 +21,10 @@ module Query
     NOT_IN_FIELDS = [
       "excluded_ids"
     ]
+    BETWEEN_FIELDS = [
+      "created_at",
+      "confidence"
+    ]
 
     def initialize key, value, table
       @key = key

@@ -1,6 +1,6 @@
 class ReceiptImage < ActiveRecord::Base
 
-	establish_connection "licensing_#{Rails.env}".to_sym
+  establish_connection "licensing_#{Rails.env}".to_sym
 
   def self.filter(search_text)
     sql = []
@@ -19,5 +19,4 @@ class ReceiptImage < ActiveRecord::Base
 
     where(sql.join(" OR "), *values)
   end
-
 end

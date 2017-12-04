@@ -18,6 +18,7 @@
 //= require angular-tablesort
 //= require tagged-infinite-scroll/taggedInfiniteScroll
 //= require jquery/dist/jquery.min
+//= require angularjs-slider/dist/rzslider.min
 
 //= require init
 //= require_tree ./config

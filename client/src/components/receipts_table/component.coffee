@@ -26,7 +26,9 @@ Ctrl =($rootScope, $scope)->
     console.log ">>>>>" + @.page
     @.incrementPage({page: @.page})
     @.page = @.page + 1
-
+  ctrl.getDate =(obj)->
+    created_at = moment(new Date(obj.created_at))
+    created_at.format('MM-DD-YYYY')
 
   # $scope.$on 'endlessScroll:next', ->
   #   debugger

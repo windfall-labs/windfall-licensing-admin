@@ -4,16 +4,44 @@
 .inner-container
   .panel
     .panel-body
-      .fleft
-        input.form-group.search-field.w20 ng-model="searchText" ng-change="clearData(page, limit)" placeholder="Search" ng-enter=="getData(page, limit)"
-
-        button.btn.btn-primary ng-click="getData(page, limit)" Search
-
-      .fleft
-        toggle-list-type list-type="listType"
-
+      .row
+        / .fleft
+        .col-md-12
+          .fright
+            toggle-list-type list-type="listType"
+      br
+      .row
+        .col-md-6
+          / .fleft
+          input.form-group.search-field.w50 ng-model="searchText" ng-change="clearData(page, limit)" placeholder="Search" ng-enter=="getData(page, limit)"
+        .col-md-2
+          span Sort 
+        .col-md-4
+          select ng-model="sort"
+            option value="created_at DESC" Latest to Oldest
+            option value="created_at ASC" Oldest to Latest
+            option value="confidence DESC" Most confident to Least Confident
+            option value="confidence ASC" Least Confident to Most Confident
+      br
       //pagination.fright page="page" count="uiState.count" on-change="getData(page, limit)"
-
+      .row
+        .col-md-2
+          span Confidence Level
+        .col-md-4
+          rzslider rz-slider-options="sliderSettings.options" rz-slider-model="confidenceLevel.min" rz-slider-high="confidenceLevel.max"
+        .col-md-1
+          span Created at
+        .col-md-5
+          .col-md-6
+            span From &nbsp;
+            input type="date" ng-model="createdAt.min"
+          .col-md-6
+            span To &nbsp;
+            input type="date" ng-model="createdAt.max"
+      br
+      .row
+        .col-md-12
+          button.btn.btn-primary.fright ng-click="getData(page, limit)" Search
       receipts-table collection="collection" get-data="getData(page, limit)" ng-if="listType != 'grid'" page="page" increment-page="incrementPage(page)"
       receipts-grid-table collection="collection" ng-if="listType == 'grid'" page="page" increment-page="incrementPage(page)"
 

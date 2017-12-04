@@ -6,6 +6,8 @@ module Query
         ""
       elsif field_type == "in" || field_type == "not in"
         ApplicationRecord.send(:sanitize_sql_array, ["#{get_key_substitute} #{get_operator} (?)",get_value_substition])
+      elsif field_type == "between"
+        get_between_query
       else
         ApplicationRecord.send(:sanitize_sql_array, ["#{get_key_substitute} #{get_operator} ?",get_value_substition])
       end
@@ -37,6 +39,18 @@ module Query
         "like"
       when *NOT_IN_FIELDS
         "not in"
+      when *BETWEEN_FIELDS
+        "between"
+      else
+        ""
+      end
+    end
+
+
+    def get_between_query
+      if (@value["min"].present? || @value[:min].present?) && (@value["max"].present? || @value[:max].present?)
+
+        ApplicationRecord.send(:sanitize_sql_array, ["#{get_key_substitute} #{get_operator} ? AND ?",@value["min"] || @value[:min], @value["max"] || @value[:max]])
       else
         ""
       end
@@ -50,6 +64,8 @@ module Query
         "ILIKE"
       when "not in"
         "NOT IN"
+      when "between"
+        "BETWEEN"
       else
         ""
       end

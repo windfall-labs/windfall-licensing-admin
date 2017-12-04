@@ -11,6 +11,7 @@ angular.module(
     'NgActive',
     'infinite-scroll',
     'tableSort',
-    'tagged.directives.infiniteScroll'
+    'tagged.directives.infiniteScroll',
+    'rzModule'
   ]
 )

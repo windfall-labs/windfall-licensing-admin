@@ -27,7 +27,9 @@
     "angular-tablesort": "^1.4.1",
     "angular-endless-scroll": "^0.1.0",
     "tagged-infinite-scroll": "^1.1.1",
-    "jquery": "^3.2.1"
+    "jquery": "^3.2.1",
+    "angularjs-slider": "^6.4.3",
+    "angular-bootstrap": "^2.5.0"
   },
   "resolutions": {
     "angular": "~1.5.5",
