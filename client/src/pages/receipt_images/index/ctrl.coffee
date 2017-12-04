@@ -33,14 +33,14 @@ Ctrl = ($scope,$state,ReceiptImage)->
 
     ReceiptImage.getList(page: page, limit: limit, filter: $scope.searchText, sort: $scope.sort, date_filter: $scope.createdAt, confidence_filter: $scope.confidenceLevel).$promise
       .then (data)->
-        if $scope.cacheSearchText == $scope.searchText && $scope.cachePage != $scope.page
+        if $scope.cacheSearchText == $scope.searchText && $scope.cachePage != page
           angular.forEach data.collection, (receipt_image) ->
             $scope.collection.push(receipt_image)
         else
           $scope.collection = data.collection
 
         $scope.cacheSearchText = $scope.searchText
-        $scope.cachePage = $scope.page
+        $scope.cachePage = page
         $scope.uiState.count = data.count
 
   $scope.clearData =(page, limit)->
