@@ -38,9 +38,8 @@ Ctrl = ($scope,$state,ReceiptImage)->
 
   $scope.getData =(page, limit)->
 
-    page = 1 if $scope.cacheSearchText != $scope.searchText || $scope.cacheCreatedAt != $scope.createdAt ||
-      $scope.cacheConfidenceLevel != $scope.confidenceLevel || $scope.cacheSort != $scope.sort
-
+    page = 1 if $scope.cacheSearchText != $scope.searchText || JSON.stringify($scope.cacheCreatedAt) != JSON.stringify($scope.createdAt) ||
+      $scope.JSON.stringify(cacheConfidenceLevel) != JSON.stringify($scope.confidenceLevel) || $scope.cacheSort != $scope.sort
     ReceiptImage.getList(page: page, limit: limit, filter: $scope.searchText, sort: $scope.sort, date_filter: $scope.createdAt, confidence_filter: $scope.confidenceLevel).$promise
       .then (data)->
         if page != 1
