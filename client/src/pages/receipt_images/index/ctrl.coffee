@@ -34,6 +34,7 @@ Ctrl = ($scope,$state,ReceiptImage)->
     min: null
     max: null
   $scope.sort = "created_at DESC"
+  $scope.max_page = 5
   # $scope.preview_images = []
 
   $scope.getData =(page, limit)->
@@ -61,6 +62,7 @@ Ctrl = ($scope,$state,ReceiptImage)->
     if $scope.searchText == ""
       $scope.getData($scope.page, $scope.limit)
   $scope.pageChange =->
+    $scope.page = this.page
     $scope.getData($scope.page, $scope.limit)
 
   # $scope.incrementPage =(page)->

@@ -46,6 +46,6 @@
       receipts-grid-table collection="collection" ng-if="listType == 'grid'" page="page" increment-page="incrementPage(page)"
       .row ng-if="total > 0"
         .col-md-12
-          ul uib-pagination="" total-items="total*10" ng-model="page" ng-change="pageChange()"
+          ul uib-pagination="" total-items="total*10" ng-model="page" ng-change="pageChange()" max-size="max_page"
 
       //pagination.fright page="page" count="uiState.count" on-change="getData(page, limit)"
