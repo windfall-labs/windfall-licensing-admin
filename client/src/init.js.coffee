@@ -13,5 +13,6 @@ angular.module(
     'tableSort',
     'tagged.directives.infiniteScroll',
     'rzModule'
+    'ui.bootstrap'
   ]
 )

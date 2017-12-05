@@ -19,6 +19,7 @@
 //= require tagged-infinite-scroll/taggedInfiniteScroll
 //= require jquery/dist/jquery.min
 //= require angularjs-slider/dist/rzslider.min
+//= require angular-bootstrap
 
 //= require init
 //= require_tree ./config
