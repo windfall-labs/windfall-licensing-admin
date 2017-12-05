@@ -39,14 +39,14 @@ Ctrl = ($scope,$state,ReceiptImage)->
   $scope.getData =(page, limit)->
 
     page = 1 if $scope.cacheSearchText != $scope.searchText || JSON.stringify($scope.cacheCreatedAt) != JSON.stringify($scope.createdAt) ||
-      $scope.JSON.stringify(cacheConfidenceLevel) != JSON.stringify($scope.confidenceLevel) || $scope.cacheSort != $scope.sort
+      JSON.stringify($scope.cacheConfidenceLevel) != JSON.stringify($scope.confidenceLevel) || $scope.cacheSort != $scope.sort
     ReceiptImage.getList(page: page, limit: limit, filter: $scope.searchText, sort: $scope.sort, date_filter: $scope.createdAt, confidence_filter: $scope.confidenceLevel).$promise
       .then (data)->
-        if page != 1
-          angular.forEach data.collection, (receipt_image) ->
-            $scope.collection.push(receipt_image)
-        else
-          $scope.collection = data.collection
+        # if page != 1
+        #   angular.forEach data.collection, (receipt_image) ->
+        #     $scope.collection.push(receipt_image)
+        # else
+        $scope.collection = data.collection
 
         $scope.cacheSearchText = $scope.searchText
         $scope.cachePage = page
