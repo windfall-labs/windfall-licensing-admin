@@ -64,8 +64,8 @@ Ctrl = ($scope,$state,ReceiptImage)->
   $scope.pageChange =->
     $scope.getData($scope.page, $scope.limit)
 
-  $scope.incrementPage =(page)->
-    $scope.getData(page, $scope.limit)
+  # $scope.incrementPage =(page)->
+  #   $scope.getData(page, $scope.limit)
   # $scope.getPrev =(receipt_image_id)->
   #   debugger;
   #   ReceiptImage.getPreviewImages(receiptiage_id_id: receipt_image_id).$promise
