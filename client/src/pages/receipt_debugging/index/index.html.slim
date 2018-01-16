@@ -1,0 +1,50 @@
+.page-title
+  .title Receipts
+
+.inner-container
+  .panel
+    .panel-body
+      .loading-overlay(ng-if="uiState.loading")
+        spinner
+      .row
+        .col-md-6
+          input.form-group.search-field.w50 ng-model="field_filters.blink_receipt_id" ng-change="clearData(page, limit)" placeholder="Blink Receipt ID" ng-enter=="getData(page, limit)"
+        .col-md-1
+          label Missing Fields
+        .col-md-5
+          .row ng-repeat="field in missing_fields" 
+            input.form-group style="float: left;" ng-model="field_filters[field]" type="checkbox"
+            label style="float: left;"
+              | {{field}}
+      .row
+        .col-md-12
+          button.btn.btn-primary.fright ng-click="search()" Search
+      .row.receipt-debug ng-repeat="receipt in data.results"
+        .col-md-12
+          .row
+            .col-md-4
+              h4 Blink Receipt ID:
+              label
+                | {{receipt.blink_receipt_id}}
+              br
+                .receipt-debug-image ng-if="receipt.image_url"
+                  img src="{{receipt.image_url}}"
+                label ng-if="!receipt.image_url" No Image URL
+            .col-md-6
+              .row
+                div ng-repeat="(key,value) in receipt" ng-if="value"
+                  .col-md-3
+                    label
+                      | {{key}}
+                  .col-md-3
+                    label
+                      | {{value}}
+            .col-md-2
+              .row
+                label Missing Fields
+              .row ng-repeat="(key,value) in receipt" ng-if="!value"
+                label 
+                  | {{key}}
+      .row ng-if="data.count > 0"
+        .col-md-12
+          ul uib-pagination="" total-items="data.count" ng-model="field_filters.page" ng-change="pageChange()" max-size="max_page"
