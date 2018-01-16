@@ -7,6 +7,15 @@
       .loading-overlay(ng-if="uiState.loading")
         spinner
       .row
+        .col-md-10
+        .col-md-2
+          label Sort
+          select ng-model="field_filters.sort"
+            option value="created_at DESC" Latest Receipts
+            option value="created_at ASC" Oldest Receipts
+            option value="purchased_time DESC" Latest Purchase
+            option value="purchased_time ASC" Oldest Purchase
+      .row
         .col-md-6
           input.form-group.search-field.w50 ng-model="field_filters.blink_receipt_id" ng-change="clearData(page, limit)" placeholder="Blink Receipt ID" ng-enter=="getData(page, limit)"
         .col-md-1

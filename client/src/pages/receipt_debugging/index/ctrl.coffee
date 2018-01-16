@@ -39,6 +39,7 @@ Ctrl = ($scope,$state,ReceiptImage,Debug,$http)->
   $scope.field_filters =
     page: 1
     blink_receipt_id: ""
+    sort: "created_at DESC"
   $scope.base_url = "https://staging-licensing.windfall.me/api/debugs/receipt_list?"
   # $scope.base_url = "http://localhost:3001/api/debugs/receipt_list?"
   $scope.page = 1
@@ -75,7 +76,6 @@ Ctrl = ($scope,$state,ReceiptImage,Debug,$http)->
   $scope.pageChange =->
     # $scope.field_filters.page = this.page
     # debugger
-    debugger
     $scope.getData()
 
   $scope.search()
