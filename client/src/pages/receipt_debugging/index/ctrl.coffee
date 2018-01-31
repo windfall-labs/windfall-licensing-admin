@@ -35,11 +35,14 @@ Ctrl = ($scope,$state,ReceiptImage,Debug,$http)->
     max: null
   $scope.sort = "created_at DESC"
   $scope.max_page = 20
-  $scope.missing_fields = ["purchased_date", "purchased_time", "product_count", "subtotal", "total"]
+  $scope.missing_fields = ["total", "date", "time", "merchant"]
   $scope.field_filters =
     page: 1
     blink_receipt_id: ""
     sort: "created_at DESC"
+    dollar_difference: null
+    percent_difference: null
+
   $scope.base_url = "https://staging-licensing.windfall.me/api/debugs/receipt_list?"
   # $scope.base_url = "http://localhost:3001/api/debugs/receipt_list?"
   $scope.page = 1
@@ -66,7 +69,8 @@ Ctrl = ($scope,$state,ReceiptImage,Debug,$http)->
     $scope.url = $scope.base_url
     $scope.link = []
     for key, value of $scope.field_filters
-      unless ((key != "page" || key != "blink_receipt_id") && value == false) || (key == "blink_receipt_id" && value == "")
+      unless ((key != "page" || key != "blink_receipt_id") && value == false) || (key == "blink_receipt_id" && value == "") || value == null
+        true_value = (key != "page" || key != "blink_receipt_id") ? !value : value
         $scope.link.push "receipt%5B#{key}%5D=#{value}"
     # debugger
     $scope.uiState.loading = true

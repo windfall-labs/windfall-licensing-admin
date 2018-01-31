@@ -13,11 +13,13 @@
           select ng-model="field_filters.sort"
             option value="created_at DESC" Latest Receipts
             option value="created_at ASC" Oldest Receipts
-            option value="purchased_time DESC" Latest Purchase
-            option value="purchased_time ASC" Oldest Purchase
+            option value="percent_difference ASC" Lowest Percent Difference
+            option value="percent_difference DESC" Highest Percent Difference
       .row
         .col-md-6
           input.form-group.search-field.w50 ng-model="field_filters.blink_receipt_id" ng-change="clearData(page, limit)" placeholder="Blink Receipt ID" ng-enter=="getData(page, limit)"
+          input.form-group.search-field.w50 type="number" ng-model="field_filters.dollar_difference" ng-change="clearData(page, limit)" placeholder="Min Dollar Difference" ng-enter=="getData(page, limit)"
+          input.form-group.search-field.w50 type="number" ng-model="field_filters.percent_difference" ng-change="clearData(page, limit)" placeholder="Min Percent Difference" ng-enter=="getData(page, limit)"
         .col-md-1
           label Missing Fields
         .col-md-5
