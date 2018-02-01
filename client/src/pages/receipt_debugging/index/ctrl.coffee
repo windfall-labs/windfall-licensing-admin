@@ -42,6 +42,8 @@ Ctrl = ($scope,$state,ReceiptImage,Debug,$http)->
     sort: "created_at DESC"
     dollar_difference: null
     percent_difference: null
+    device_type: ""
+    sdk_version: ""
 
   $scope.base_url = "https://staging-licensing.windfall.me/api/debugs/receipt_list?"
   # $scope.base_url = "http://localhost:3001/api/debugs/receipt_list?"
