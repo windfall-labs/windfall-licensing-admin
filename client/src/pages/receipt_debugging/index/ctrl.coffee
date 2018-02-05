@@ -44,6 +44,8 @@ Ctrl = ($scope,$state,ReceiptImage,Debug,$http)->
     percent_difference: null
     device_type: ""
     sdk_version: ""
+    sum_product_price: {}
+    number_of_products: {}
 
   $scope.base_url = "https://staging-licensing.windfall.me/api/debugs/receipt_list?"
   # $scope.base_url = "http://localhost:3001/api/debugs/receipt_list?"
@@ -71,9 +73,13 @@ Ctrl = ($scope,$state,ReceiptImage,Debug,$http)->
     $scope.url = $scope.base_url
     $scope.link = []
     for key, value of $scope.field_filters
-      unless ((key != "page" || key != "blink_receipt_id") && value == false) || (key == "blink_receipt_id" && value == "") || value == null
-        true_value = (key != "page" || key != "blink_receipt_id") ? !value : value
-        $scope.link.push "receipt%5B#{key}%5D=#{value}"
+      if key == "sum_product_price" || key == "number_of_products"
+        $scope.link.push "receipt%5B#{key}%5D%5Bmin%5D=#{value.min}" if value.min
+        $scope.link.push "receipt%5B#{key}%5D%5Bmax%5D=#{value.max}" if value.max
+      else
+        unless ((key != "page" || key != "blink_receipt_id") && value == false) || (key == "blink_receipt_id" && value == "") || value == null
+          true_value = (key != "page" || key != "blink_receipt_id") ? !value : value
+          $scope.link.push "receipt%5B#{key}%5D=#{value}"
     # debugger
     $scope.uiState.loading = true
     $http.get("#{$scope.base_url}#{$scope.link.join('&')}", {headers: $scope.http_config}).then (data)->
